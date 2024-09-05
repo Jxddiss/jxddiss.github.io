@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRJ</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=PT+Sans+Narrow:wght@400;700&family=Pacifico&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+</head>
+<body class="no-scroll">
+    <div class="loading-page">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <nav id="nav" class="no-opacity">
+            <a href="#hero">
+                <img src="assets/images/logo/logo-white-no-background.png" alt="" class="logo">
+            </a>
+            <ul class="sections no-click">
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contactez-moi</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main" >
+        <section class="hero-section no-opacity" id="hero">
+            <div class="hero-card">
+                <h1 class="name pixelify-sans-regular"></h1>
+                <p class="job pixelify-sans-regular"></p>
+            </div>
+            <pre class="ascii-art-container" >
+
+            </pre>
+        </section>
+        <section class="about-section" id="a-propos">
+            <h2>A propos de moi</h2>
+            <div class="text">
+                <p>Je suis un étudiant en développement Web et Mobile. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum esse beatae perferendis</p>
+            </div>
+        </section>
+        <section class="skills-section" id="competences">
+            <h2>Compétences</h2>
+            <div class="content">
+                <p>Voici quelques-unes de mes compétences :</p>
+                <ul>
+                    <li>Compétence 1</li>
+                    <li>Compétence 2</li>
+                    <li>Compétence 3</li>
+                </ul>
+            </div>
+        </section>
+        <section class="projects-section" id="projets">
+            <h2>Projets</h2>
+            <div class="content">
+                <p>Voici quelques-uns de mes projets :</p>
+                <ul>
+                    <li class="project-card">
+                        <div class="description">
+                            <h3>Projet 1</h3>
+                            <p>Description du projet 1</p>
+                            <a href="#">Voir le projet</a>
+                        </div>
+                        <div class="image">
+                            <img src="https://via.placeholder.com/300x200" alt="Image du projet 1">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="contact-section" id="contact">
+            <h2>Contact</h2>
+            <div class="content">
+                <p>Vous pouvez me contacter via :</p>
+                <div class="contact">
+                    <img src="https://via.placeholder.com/50" alt="">
+                    <ul>
+                        <li><a href="https://github.com/jacquesrainville">Github</a></li>
+                        <li><a href="https://www.linkedin.com/in/jacquesrainville/">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="computer-container"></div>
+</body>
+<script src="computer.js" type="module"></script>
+<script src="ascii-art.js" type="module"></script>
+</html>
