@@ -21,7 +21,7 @@ export const animateHero = () =>{
         clearProps: true,
     })
     .to(".power-anim", {
-        duration: 0.2,
+        duration: 0.5,
         width: "95vw",
         background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
     })
