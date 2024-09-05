@@ -13,13 +13,26 @@ export const animateHero = () =>{
     .fromTo('.hero-section', {
         width: "100vw",
         height: "100vh",
-        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
         ease: 'power1.inOut',
     },{
         width: "95%",
         height:"97vh",
         background: '#0f0f0f',
         clearProps: true,
+    })
+    .to(".power-anim", {
+        duration: 0.2,
+        width: "95vw",
+        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
+    })
+    .to(".power-anim", {
+        duration: 0.2,
+        top: "0",
+        height: "97vh",
+    })
+    .to(".power-anim", {
+        duration: 0.3,
+        opacity: 0,
     })
     .from('#nav', {
         opacity: 0,
