@@ -4,7 +4,7 @@ import { animateHero,animationMatrix } from './portfolio.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const location = window.location.href;
-    if (location.includes('#') || window.scrollY > 0 ) {
+    if ((location.includes('#') && !location.includes('hero')) || window.scrollY > 0 ) {
         document.body.classList.remove('no-scroll')
         animateHero(0);
         animationMatrix();
