@@ -1,4 +1,4 @@
-export const animateHero = () =>{
+export const animateHero = (delai = 4) =>{
     gsap.registerPlugin(Flip,ScrollTrigger,Observer,Draggable,MotionPathPlugin,TextPlugin)
     document.querySelectorAll(".no-opacity").forEach(element => {
         element.classList.remove("no-opacity")
@@ -22,13 +22,14 @@ export const animateHero = () =>{
     })
     .to(".power-anim", {
         duration: 0.5,
-        width: "95vw",
+        width: "100%",
         background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
     })
     .to(".power-anim", {
         duration: 0.2,
+        height: "100%",
         top: "0",
-        height: "97vh",
+        left: "0",
     })
     .to(".power-anim", {
         duration: 0.3,
@@ -72,13 +73,53 @@ export const animateHero = () =>{
         ease: 'power1.inOut',
         onComplete: () => {
             document.body.classList.remove('no-scroll')
-            document.querySelector(".sections").classList.remove("no-click")
+            document.querySelector("nav").classList.remove("no-click")
         }
     })
     .from('.ascii-art-container', {
         opacity: 0,
         duration: 1,
     })
-    timelineHeroSection.delay(4)
+    if(delai > 0){
+        timelineHeroSection.delay(delai)
+    }
 }
 
+export const animationMatrix = () => {
+    const matrixCanvas = document.getElementById("matrix-effect-container")
+    const ctx = matrixCanvas.getContext("2d")
+
+    matrixCanvas.width =  matrixCanvas.offsetWidth
+    matrixCanvas.height = matrixCanvas.offsetHeight
+
+    const width = matrixCanvas.width
+    const height = matrixCanvas.height
+    const charDistance = 15
+    const columns = Math.floor(width / charDistance) + 1
+    const yPosition = Array(columns).fill(0)
+
+    ctx.fillStyle = "#000"
+    ctx.fillRect(0, 0, width, height)
+    
+
+    const letterAnimation = () => {
+        ctx.fillStyle = "#0001"
+        ctx.fillRect(0, 0, width, height)
+
+        ctx.fillStyle = "#21df21"
+        ctx.font = `20px monospace`
+
+        yPosition.forEach((y, index) => {
+            const text = String.fromCharCode(Math.random() * 128)
+            const x = index * charDistance
+            ctx.fillText(text, x, y)
+            if(y > 100 + Math.random() * 10000) {
+                yPosition[index] = 0
+            }else{
+                yPosition[index] = y + charDistance
+            }
+        })
+    }
+
+    setInterval(letterAnimation, 70)
+}

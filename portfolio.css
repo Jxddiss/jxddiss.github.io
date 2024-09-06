@@ -91,11 +91,18 @@ header{
 }
 
 .logo{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin-right: 10px;
     object-fit: contain;
     filter: sepia(0.5) hue-rotate(90deg);
+}
+
+.glass-window{
+    border-radius: 5px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
 }
 
 nav{
@@ -104,12 +111,8 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color);
     padding-left: 20px;
     padding-right: 20px;
-    border-radius: 5px;
     margin-top: 30px;
     transition: box-shadow 0.3s;
 }
@@ -169,17 +172,17 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 section{
     width: 95%;
     height: 97vh;
     z-index: 2;
-    scroll-margin-top: 40px;
 }
 
-section:not(:first-child){
-    outline: 1px solid var(--border-color);
+section:not(:last-of-type){
+    scroll-margin-top: 40px;
 }
 
 .hero-section{
@@ -190,6 +193,7 @@ section:not(:first-child){
     gap: 20px;
     background: #0f0f0f;
     position: relative;
+    border-radius: 2%;
 }
 
 .hero-card{
@@ -220,7 +224,7 @@ section:not(:first-child){
 }
 
 .ascii-art-container {
-    width: 450px;
+    width: 525px;
     height: 450px;
     font-family: monospace;
     color: var(--accent-color);
@@ -240,6 +244,107 @@ section:not(:first-child){
     pointer-events: none;
 }
 
+.power-anim{
+    position: absolute;
+    top: 50%;
+    margin:0 auto;
+    z-index: 4;
+    height: 2px;
+    width: 100%;
+    border-radius: 2%;
+}
+
+.contact-section{
+    position: relative;
+}
+
+#matrix-effect-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.contact-section .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 60%;
+    width: 50%;
+    color: var(--text-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    padding: 2em;
+    font-size: 1.5rem;
+}
+
+.img-contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.img-contact img{
+    border-radius: 100000px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+}
+
+.socials-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.socials-container i::before{
+    transition: transform 0.4s;
+}
+
+.socials-container a:hover i::before {
+    transform: scale(1.2);
+    text-shadow: 2px 0px 0px var(--shadow-color);
+    cursor: url("assets/images/cursor_pointer.png"), auto;
+}
+
+.text-content-contact{
+    width: 50%;
+}
+
+.text-content-contact h2{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+    width: 100%;
+    background: #0f0f0f;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    z-index: 4;
+}
+
+footer span{
+    color: var(--accent-color);
+    font-size: 3rem;
+}
+
 ::-webkit-scrollbar {
     background-color: var(--background-color);
     width: 5px;
@@ -254,13 +359,171 @@ section:not(:first-child){
     border-radius: 10px;
 }
 
-.power-anim{
+/*
+    Source : https://aleclownes.com/2017/02/01/crt-display.html
+
+    The MIT License (MIT)
+
+    Copyright (c) 2017 Alec Lownes
+*/
+
+@keyframes flicker {
+    0% {
+      opacity: 0.27861;
+    }
+    5% {
+      opacity: 0.34769;
+    }
+    10% {
+      opacity: 0.23604;
+    }
+    15% {
+      opacity: 0.90626;
+    }
+    20% {
+      opacity: 0.18128;
+    }
+    25% {
+      opacity: 0.83891;
+    }
+    30% {
+      opacity: 0.65583;
+    }
+    35% {
+      opacity: 0.67807;
+    }
+    40% {
+      opacity: 0.26559;
+    }
+    45% {
+      opacity: 0.84693;
+    }
+    50% {
+      opacity: 0.96019;
+    }
+    55% {
+      opacity: 0.08594;
+    }
+    60% {
+      opacity: 0.20313;
+    }
+    65% {
+      opacity: 0.71988;
+    }
+    70% {
+      opacity: 0.53455;
+    }
+    75% {
+      opacity: 0.37288;
+    }
+    80% {
+      opacity: 0.71428;
+    }
+    85% {
+      opacity: 0.70419;
+    }
+    90% {
+      opacity: 0.7003;
+    }
+    95% {
+      opacity: 0.36108;
+    }
+    100% {
+      opacity: 0.24387;
+    }
+  }
+  @keyframes textShadow {
+    0% {
+      text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    5% {
+      text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    10% {
+      text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    15% {
+      text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    20% {
+      text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    25% {
+      text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    30% {
+      text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    35% {
+      text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    40% {
+      text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    45% {
+      text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    50% {
+      text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    55% {
+      text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    60% {
+      text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    65% {
+      text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    70% {
+      text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    75% {
+      text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    80% {
+      text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    85% {
+      text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    90% {
+      text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    95% {
+      text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    100% {
+      text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+  }
+  .crt::after {
+    content: " ";
+    display: block;
     position: absolute;
-    top: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 4;
-    height: 2px;
-    width: 100%;
-    border-radius: 10%;
-}
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+  .crt::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+  .crt {
+    animation: textShadow 1.6s infinite;
+  }
