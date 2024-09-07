@@ -5,6 +5,9 @@
     --border-color: #e7ebe6;
     --accent-color: #21df21;
     --shadow-color: hsla(120, 75%, 50%, 0.671);
+    --h1-font-size: 4rem;
+    --h2-font-size: 3rem;
+    --normal-font-size: 1.5rem;
 }
 
 *, *::before, *::after {
@@ -66,17 +69,8 @@ body{
     cursor: url("assets/images/cursor_retro.png"), auto;
 }
 
-.loading-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 9999;
-    display: none;
-    justify-content: center;
-    align-items: center;
+p{
+    font-size: var(--normal-font-size);
 }
 
 /* ===== header and nav ===== */
@@ -140,7 +134,7 @@ nav ul a{
     text-decoration: none;
     color: #000;
     margin: 0 10px;
-    font-size: 1.5rem;
+    font-size: var(--normal-font-size);
     position: relative;
     font-weight: 500;
     transition: all 0.4s;
@@ -187,8 +181,8 @@ section{
     z-index: 2;
 }
 
-section:not(:last-of-type){
-    scroll-margin-top: 40px;
+section:nth-child(even){
+  height: 100vh;
 }
 
 /* ===== hero section ===== */
@@ -268,12 +262,84 @@ section:not(:last-of-type){
     border-radius: 2%;
 }
 
+/* ===== skills section ===== */
 .skills-section{
     background: #0f0f0f;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
 }
 
+.skills-section h2{
+  font-size: var(--h2-font-size);
+  margin-bottom: .5em;
+  margin-top: 2.5em;
+}
+
+.skills-container{
+    width: 90%;
+    height: 70%;
+    font-size: var(--normal-font-size);
+    position: relative;
+}
+
+.skill{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: nowrap;
+    transition: scale 0.3s cubic-bezier(1.000, -0.095, 0.655, 0.520);
+    position: absolute;
+    visibility: hidden;
+}
+
+.skill i{
+    font-size: 4rem;
+    pointer-events: none;
+}
+
+.skill:hover{
+  scale: 1.3;
+  z-index: 5;
+}
+
+.skill .skill-name{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  right: -55%;
+  font-size: 2rem;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  width: max-content;
+}
+
+#plus{
+  cursor: url("assets/images/cursor_pointer.png"), pointer;
+}
+
+.progress-bar{
+  font-size: 1.5rem;
+  font-weight: 1000;
+  width: 67px;
+  outline: 3px solid var(--border-color);
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* ===== contact section ===== */
 .contact-section{
     position: relative;
+    border-radius: 2%;
+    overflow: hidden;
 }
 
 #matrix-effect-container{
@@ -283,6 +349,17 @@ section:not(:last-of-type){
     top: 0;
     left: 0;
     pointer-events: none;
+}
+
+.contact-section .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    background: #0f0f0f2c;
 }
 
 .contact-section .content{
@@ -538,8 +615,8 @@ footer span{
     bottom: 0;
     right: 0;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 2;
-    background-size: 100% 6px, 4px 100%; /* Modified from original */
+    z-index: 20;
+    background-size: 100% 4px, 6px 100%; /* Modified from original */
     pointer-events: none;
   }
   .crt {

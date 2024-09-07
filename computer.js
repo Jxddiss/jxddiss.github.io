@@ -1,9 +1,8 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.133.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.133.0/examples/jsm/loaders/GLTFLoader.js';
-import { animateHero,animationMatrix } from './animation.js';
+import { animateHero,animationMatrix, animationSkills } from './animation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const location = window.location.href;
     if (Math.floor(window.scrollY) > 0 ) {
         document.body.classList.remove('no-scroll')
         animateHero(0);
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, 0);
         initializeAnimation();
     }
+    animationSkills();
 });
 
 function initializeAnimation(){
