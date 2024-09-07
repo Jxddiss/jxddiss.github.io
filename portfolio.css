@@ -1,6 +1,6 @@
 :root{
     --background-color: #000;
-    --text-color: #e7ebe6;
+    --text-color: #f2f7f1;
     --secondary-text-color: #ccc;
     --border-color: #e7ebe6;
     --accent-color: #21df21;
@@ -127,35 +127,38 @@ nav ul{
 }
 
 nav ul li{
-    display: flex;
+  display: flex;
+  
 }
 
 nav ul a{
-    text-decoration: none;
-    color: #000;
-    margin: 0 10px;
-    font-size: var(--normal-font-size);
-    position: relative;
-    font-weight: 500;
-    transition: all 0.4s;
-    color: var(--text-color);
+  text-decoration: none;
+  color: #000;
+  margin: 0 10px;
+  font-size: var(--normal-font-size);
+  position: relative;
+  font-weight: 500;
+  transition: all 0.4s;
+  color: var(--text-color);
+  animation: textShadow 1.6s infinite;
 }
 
 nav ul a:hover{
-    text-shadow: 2px 0px 0px var(--shadow-color);
-    scale: 1.1;
-    /* source : https://www.pngegg.com/en/png-fjjhl */
-    cursor: url("assets/images/cursor_pointer.png"), auto;
+  text-shadow: 2px 0px 0px var(--shadow-color);
+  scale: 1.1;
+  /* source : https://www.pngegg.com/en/png-fjjhl */
+  cursor: url("assets/images/cursor_pointer.png"), auto;
+  animation: none;
 }
 
 nav ul a::after{
-    content: "";
-    display: block;
-    width: 0;
-    height: 2px;
-    background: var(--border-color);
-    transition: width 0.4s;
-    box-shadow: 0 8px 32px 0 rgba(31, 135, 48, 0.15);
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--border-color);
+  transition: width 0.4s;
+  box-shadow: 0 8px 32px 0 rgba(31, 135, 48, 0.15);
 }
 
 nav ul a:hover::after{
