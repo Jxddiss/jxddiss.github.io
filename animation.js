@@ -146,14 +146,14 @@ export const animationSkills = () => {
         let posX = col * cellWidth + cellWidth / 2 - skillsList[index].offsetWidth / 2;
         let posY = row * cellHeight + cellHeight / 2 - skillsList[index].offsetHeight / 2;
 
-        const offsetRangeX = cellWidth * 0.2; 
-        const offsetRangeY = cellHeight * 0.2; 
+        // const offsetRangeX = cellWidth * 0.2; 
+        // const offsetRangeY = cellHeight * 0.2; 
 
-        posX += (Math.random() - 0.5) * offsetRangeX;
-        posY += (Math.random() - 0.5) * offsetRangeY;
+        // posX += (Math.random() - 0.5) * offsetRangeX;
+        // posY += (Math.random() - 0.5) * offsetRangeY;
 
-        posX = Math.min(containerWidth - skillsList[index].offsetWidth, Math.max(0, posX));
-        posY = Math.min(containerHeight - skillsList[index].offsetHeight, Math.max(0, posY));
+        // posX = Math.min(containerWidth - skillsList[index].offsetWidth, Math.max(0, posX));
+        // posY = Math.min(containerHeight - skillsList[index].offsetHeight, Math.max(0, posY));
 
         return { posX, posY };
     };
@@ -178,19 +178,21 @@ export const animationSkills = () => {
                 onComplete: move, 
             });
 
+            let tlEnter, tlOut;
+
             skill.addEventListener("mouseover",() => {
                 animation.pause();
                 gsap.to(skill, {
                     background: "#000",
                 })
-                mouseOverAnimationTextAnimation(skill)
+                mouseOverAnimationTextAnimation(skill, tlOut, tlEnter)
             });
             skill.addEventListener("mouseout", () => {{
                 animation.resume()
                 gsap.to(skill, {
                     background: "transparent",
                 })
-                mouseOutAnimationTextAnimation(skill)
+                mouseOutAnimationTextAnimation(skill, tlOut, tlEnter)
             }});
             
         };
@@ -199,17 +201,19 @@ export const animationSkills = () => {
         move(); 
     };
 
-    const mouseOverAnimationTextAnimation = (skill) => {
+    const mouseOverAnimationTextAnimation = (skill, tlOut, tlEnter) => {
+        tlOut = null;
         const skillNameContainer = skill.querySelector(".skill-name");
-        const tl = gsap.timeline();
         const name = skill.dataset.name;
         const progress = skill.dataset.progress;
         let progressText = ""
         for (let i = 0; i < progress; i++) {
             progressText += "|"
         } 
+
+        tlEnter = gsap.timeline();
         
-        tl
+        tlEnter
         .to(skillNameContainer, {
             visibility: "visible",
             duration:0
@@ -233,10 +237,12 @@ export const animationSkills = () => {
         });
     }
 
-    const mouseOutAnimationTextAnimation = (skill) => {
+    const mouseOutAnimationTextAnimation = (skill, tlOut, tlEnter) => {
+        tlEnter = null;
         const skillNameContainer = skill.querySelector(".skill-name");
-        const tl = gsap.timeline();
-        tl
+        tlOut = gsap.timeline();
+
+        tlOut
         .to(skillNameContainer, {
             opacity: 0,
             ease: "power1.inOut",
@@ -261,7 +267,8 @@ export const animationSkills = () => {
     ScrollTrigger.create({
         trigger: '.skills-section',
         start: 'top center',
-        end: 'bottom center',
+        end: 'bottom 100px',
+        // markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
         onEnter: () => {
             skillsList.forEach((skill, index) => {
                 const { posX, posY } = generatePosition(skillsList.length, index);
@@ -276,23 +283,23 @@ export const animationSkills = () => {
                     visibility: 'visible',
                     top: posY,
                     left: posX,
-                    duration: 1,
+                    duration: 0.5,
                     ease: 'power1.inOut',
-                    delay: index * 0.1,
+                    delay: index * 0.01,
                     clearProps: "scale",
                     onComplete: () => moveSkillAround(skill) 
                 });
             });
         },
-        // onLeaveBack: () => {
-        //     skillsList.forEach((skill) => {
-        //         gsap.to(skill, {
-        //             scale: 0,
-        //             opacity: 0,
-        //             duration: 1,
-        //             clearProps: true,
-        //         })
-        //     });
-        // }
+        onLeaveBack: () => {
+            skillsList.forEach((skill) => {
+                gsap.to(skill, {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 1,
+                    clearProps: true,
+                })
+            });
+        }
     });
 };
