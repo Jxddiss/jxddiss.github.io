@@ -79,6 +79,7 @@ body{
     align-items: center;
 }
 
+/* ===== header and nav ===== */
 header{
     position: fixed;
     display: flex;
@@ -167,6 +168,11 @@ nav ul a:hover::after{
     width: 100%;
 }
 
+.logo-container:hover{
+  cursor: url("assets/images/cursor_pointer.png"), auto;
+}
+
+/* ===== main ===== */
 main{
     padding: 20px;
     display: flex;
@@ -185,15 +191,23 @@ section:not(:last-of-type){
     scroll-margin-top: 40px;
 }
 
+/* ===== hero section ===== */
 .hero-section{
     display: flex;
     justify-content:  space-between;
     padding: 3em;
     padding-top: 15em;
     gap: 20px;
-    background: #0f0f0f;
+    background: #0e0d0d;
     position: relative;
     border-radius: 2%;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.backlight{
+  box-shadow: inset 0px 6px 30px -3px rgba(255,255,255,0.08),
+      inset -8px 0px 60px -3px rgba(255,255,255,0.08),
+      inset 8px 0px 60px -3px rgba(255,255,255,0.08);
 }
 
 .hero-card{
@@ -252,6 +266,10 @@ section:not(:last-of-type){
     height: 2px;
     width: 100%;
     border-radius: 2%;
+}
+
+.skills-section{
+    background: #0f0f0f;
 }
 
 .contact-section{

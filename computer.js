@@ -1,6 +1,6 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.133.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.133.0/examples/jsm/loaders/GLTFLoader.js';
-import { animateHero,animationMatrix } from './portfolio.js';
+import { animateHero,animationMatrix } from './animation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const location = window.location.href;
