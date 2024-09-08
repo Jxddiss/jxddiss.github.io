@@ -360,6 +360,7 @@ section:nth-child(even) {
   gap: 10px;
 }
 
+/* ----- terminal ----- */
 .username {
   color: var(--accent-color);
 }
@@ -377,6 +378,9 @@ section:nth-child(even) {
   line-height: 0;
   font-size: 2rem;
   animation: typeBlink 0.8s infinite;
+  font-weight: 100;
+  font-family: "Courier New", Courier, monospace;
+  margin-left: -11px;
 }
 
 @keyframes typeBlink {
@@ -406,6 +410,11 @@ input.command {
   font-size: inherit;
   color: inherit;
   padding: 0;
+  animation: textShadow 1.5s infinite;
+}
+
+input.command + .typing-indicator {
+  display: none;
 }
 /* ===== contact section ===== */
 .contact-section {

@@ -17,6 +17,11 @@ export const terminalMoreSkills = () => {
         closeLines();
         lineTimeline.kill();
         lineTimeline = gsap.timeline();
+        gsap.set(".typing-indicator", {
+          text: {
+            value: "|",
+          },
+        });
       }, 500);
       document.removeEventListener("click", closeHandler);
     }
