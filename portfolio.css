@@ -339,6 +339,62 @@ section:nth-child(even) {
   padding-right: 3px;
 }
 
+#more-skills {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline: 1px solid var(--border-color);
+  height: 0;
+  width: 0;
+  z-index: 7;
+  background-color: rgba(0, 0, 0, 0.9);
+  font-size: var(--normal-font-size);
+  padding: 0.5em;
+  overflow: hidden;
+}
+
+#more-skills[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.username {
+  color: var(--accent-color);
+}
+
+.location {
+  color: rgb(247, 184, 10);
+  margin-right: 5px;
+}
+
+.user-type {
+  margin-right: 5px;
+}
+
+.typing-indicator {
+  line-height: 0;
+  font-size: 2rem;
+  animation: typeBlink 0.8s infinite;
+}
+
+@keyframes typeBlink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.line:not(:first-of-type) {
+  opacity: 0;
+}
+
 /* ===== contact section ===== */
 .contact-section {
   position: relative;
@@ -625,7 +681,7 @@ footer span {
   position: absolute;
   top: 0;
   left: 0;
-  height: 480vh;
+  height: 480vh; /* Modified from original */
   right: 0;
   background: rgba(18, 16, 16, 0.1);
   opacity: 0;
@@ -639,7 +695,7 @@ footer span {
   position: absolute;
   top: 0;
   left: 0;
-  height: 490vh;
+  height: 490vh; /* Modified from original */
   right: 0;
   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
     linear-gradient(

@@ -175,7 +175,13 @@ export const animationSkills = () => {
     return { posX, posY };
   };
 
+  let shouldMove = true;
+
   const moveSkillAround = (skill) => {
+    if (!shouldMove) {
+      return;
+    }
+
     const move = () => {
       const currentX = parseFloat(skill.style.left);
       const currentY = parseFloat(skill.style.top);
@@ -293,6 +299,7 @@ export const animationSkills = () => {
     // markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
     onEnter: () => {
       skillsList.forEach((skill, index) => {
+        shouldMove = true;
         const { posX, posY } = generatePosition(skillsList.length, index);
 
         tl.fromTo(
@@ -318,6 +325,7 @@ export const animationSkills = () => {
       });
     },
     onLeaveBack: () => {
+      shouldMove = false;
       skillsList.forEach((skill) => {
         gsap.to(skill, {
           scale: 0,
