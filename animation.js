@@ -178,9 +178,16 @@ export const animationSkills = () => {
   let shouldMove = true;
 
   const moveSkillAround = (skill) => {
+    const startPosition = {
+      x: parseFloat(skill.style.left),
+      y: parseFloat(skill.style.top),
+    };
     if (!shouldMove) {
       return;
     }
+
+    let animation = gsap.to({}, {});
+    let backToStart = false;
 
     const move = () => {
       const currentX = parseFloat(skill.style.left);
@@ -198,39 +205,56 @@ export const animationSkills = () => {
         Math.max(0, currentY + deltaY)
       );
 
-      const animation = gsap.to(skill, {
+      animation = gsap.to(skill, {
         top: posY,
         left: posX,
         duration: 3 + Math.random() * 2,
         ease: "power1.inOut",
-        onComplete: move,
-      });
-
-      let tlEnter, tlOut;
-
-      skill.addEventListener("mouseover", () => {
-        animation.pause();
-        gsap.to(skill, {
-          background: "#000",
-        });
-        mouseOverAnimationTextAnimation(skill, tlOut, tlEnter);
-      });
-      skill.addEventListener("mouseout", () => {
-        {
-          animation.resume();
-          gsap.to(skill, {
-            background: "transparent",
-          });
-          mouseOutAnimationTextAnimation(skill, tlOut, tlEnter);
-        }
+        onComplete: () => {
+          if (backToStart) {
+            backToStart = false;
+            animation = gsap.to(skill, {
+              top: startPosition.y,
+              left: startPosition.x,
+              duration: 3 + Math.random() * 2,
+              ease: "power1.inOut",
+              onComplete: () => {
+                move();
+              },
+            });
+          } else {
+            move();
+          }
+        },
       });
     };
 
     move();
+
+    let tlEnter = gsap.timeline();
+
+    skill.addEventListener("mouseover", () => {
+      animation.pause();
+      gsap.to(skill, {
+        background: "#000",
+      });
+      mouseOverAnimationTextAnimation(skill, tlEnter);
+    });
+    skill.addEventListener("mouseout", () => {
+      {
+        animation.resume();
+        gsap.to(skill, {
+          background: "transparent",
+        });
+      }
+    });
+
+    setInterval(() => {
+      backToStart = true;
+    }, 3000);
   };
 
-  const mouseOverAnimationTextAnimation = (skill, tlOut, tlEnter) => {
-    tlOut = null;
+  const mouseOverAnimationTextAnimation = (skill, tlEnter) => {
     const skillNameContainer = skill.querySelector(".skill-name");
     const name = skill.dataset.name;
     const progress = skill.dataset.progress;
@@ -239,7 +263,43 @@ export const animationSkills = () => {
       progressText += "|";
     }
 
-    tlEnter = gsap.timeline();
+    if (tlEnter.isActive()) {
+      return;
+    } else {
+      tlEnter
+        .to(
+          skillNameContainer,
+          {
+            visibility: "hidden",
+            opacity: 0,
+            duration: 0,
+            clearProps: "all",
+          },
+          0
+        )
+        .to(
+          skillNameContainer.children[1],
+          {
+            text: {
+              value: "",
+            },
+            duration: 0,
+          },
+          0
+        )
+        .to(
+          skillNameContainer.children[0],
+          {
+            text: {
+              value: "",
+            },
+            duration: 0,
+          },
+          0
+        );
+      tlEnter.kill();
+      tlEnter = gsap.timeline();
+    }
 
     tlEnter
       .to(skillNameContainer, {
@@ -251,45 +311,23 @@ export const animationSkills = () => {
         duration: 0.2,
         ease: "power1.inOut",
       })
-      .to(skillNameContainer.children[0], {
+      .to(skillNameContainer.children[1], {
         text: {
-          value: name,
+          value: progressText,
         },
-      });
-    gsap.to(skillNameContainer.children[1], {
-      text: {
-        value: progressText,
-      },
-      duration: 1,
-      stagger: 0.1,
-    });
-  };
-
-  const mouseOutAnimationTextAnimation = (skill, tlOut, tlEnter) => {
-    tlEnter = null;
-    const skillNameContainer = skill.querySelector(".skill-name");
-    tlOut = gsap.timeline();
-
-    tlOut
-      .to(skillNameContainer, {
-        opacity: 0,
-        ease: "power1.inOut",
+        duration: progressText.length * 0.2,
       })
-      .to(skillNameContainer, {
-        visibility: "hidden",
-      })
-      .to(skillNameContainer.children[0], {
-        text: {
-          value: "",
+      .to(
+        skillNameContainer.children[0],
+        {
+          text: {
+            value: name,
+            duration: name.length * 0.2,
+          },
         },
-      });
-    gsap.to(skillNameContainer.children[1], {
-      text: {
-        value: "",
-      },
-      duration: 1,
-      stagger: 0.1,
-    });
+        0
+      );
+    skill.addEventListener("mouseout", () => tlEnter.reverse());
   };
 
   ScrollTrigger.create({
@@ -315,7 +353,7 @@ export const animationSkills = () => {
             visibility: "visible",
             top: posY,
             left: posX,
-            duration: 0.5,
+            duration: index * 0.1 + 0.2,
             ease: "power1.inOut",
             delay: index * 0.01,
             clearProps: "scale",

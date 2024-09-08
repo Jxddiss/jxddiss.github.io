@@ -399,6 +399,14 @@ section:nth-child(even) {
   opacity: 0;
 }
 
+input.command {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+}
 /* ===== contact section ===== */
 .contact-section {
   position: relative;

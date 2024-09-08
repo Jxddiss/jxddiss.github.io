@@ -31,40 +31,30 @@
 	} 
   </style>
 
-  <!-- Define filters to create red and blue bleed/glitch effects -->
   <defs>
-    <!-- First Glitch Filter: Slight offset, with blur -->
     <filter id="glitch-filter1">
       <feOffset in="SourceGraphic" dx="5" dy="0" result="off1"/>
       <feOffset in="SourceGraphic" dx="-5" dy="0" result="off2"/>
-      <!-- Red Bleed -->
       <feFlood flood-color="rgba(255,0,0,1)" result="red"/>
       <feComposite in2="off1" in="red" operator="in" result="redOffset"/>
-      <!-- Blue Bleed -->
       <feFlood flood-color="rgba(0,0,255,1)" result="blue"/>
       <feComposite in2="off2" in="blue" operator="in" result="blueOffset"/>
-      <!-- Apply Blur to the offsets -->
       <feGaussianBlur in="redOffset" stdDeviation="2" result="blurredRed"/>
       <feGaussianBlur in="blueOffset" stdDeviation="2" result="blurredBlue"/>
       <feMerge>
         <feMergeNode in="blurredRed"/>
         <feMergeNode in="blurredBlue"/>
-        <!-- Overlay the original image -->
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <!-- Second Glitch Filter: Larger offsets, with blur -->
     <filter id="glitch-filter2">
       <feOffset in="SourceGraphic" dx="10" dy="1" result="off1"/>
       <feOffset in="SourceGraphic" dx="-10" dy="-1" result="off2"/>
-      <!-- Red Bleed -->
       <feFlood flood-color="rgba(255,0,0,1)" result="red"/>
       <feComposite in2="off1" in="red" operator="in" result="redOffset"/>
-      <!-- Blue Bleed -->
       <feFlood flood-color="rgba(0,0,255,1)" result="blue"/>
       <feComposite in2="off2" in="blue" operator="in" result="blueOffset"/>
-      <!-- Apply Blur to the offsets -->
       <feGaussianBlur in="redOffset" stdDeviation="3" result="blurredRed"/>
       <feGaussianBlur in="blueOffset" stdDeviation="3" result="blurredBlue"/>
       <feMerge>
@@ -74,17 +64,13 @@
       </feMerge>
     </filter>
 
-    <!-- Third Glitch Filter: Extreme offsets, with more blur -->
     <filter id="glitch-filter3">
       <feOffset in="SourceGraphic" dx="12" dy="3" result="off1"/>
       <feOffset in="SourceGraphic" dx="-12" dy="-3" result="off2"/>
-      <!-- Red Bleed -->
       <feFlood flood-color="rgba(255,0,0,1)" result="red"/>
       <feComposite in2="off1" in="red" operator="in" result="redOffset"/>
-      <!-- Blue Bleed -->
       <feFlood flood-color="rgba(0,0,255,1)" result="blue"/>
       <feComposite in2="off2" in="blue" operator="in" result="blueOffset"/>
-      <!-- Apply Blur to the offsets -->
       <feGaussianBlur in="redOffset" stdDeviation="4" result="blurredRed"/>
       <feGaussianBlur in="blueOffset" stdDeviation="4" result="blurredBlue"/>
       <feMerge>

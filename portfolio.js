@@ -94,6 +94,11 @@ function closeLines() {
         duration: 0,
       });
   });
+  gsap.to(".ls-result", {
+    display: "none",
+    opacity: 0,
+    duration: 0,
+  });
 }
 
 function doCommand(command, index, line) {
