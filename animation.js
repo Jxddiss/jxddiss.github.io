@@ -353,7 +353,7 @@ export const animationSkills = () => {
             visibility: "visible",
             top: posY,
             left: posX,
-            duration: index * 0.1 + 0.2,
+            duration: index * 0.05 + 0.2,
             ease: "power1.inOut",
             delay: index * 0.01,
             clearProps: "scale",

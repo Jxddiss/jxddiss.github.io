@@ -1,20 +1,8 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.133.0/build/three.module.js";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.133.0/examples/jsm/loaders/GLTFLoader.js";
-import { animateHero, animationMatrix, animationSkills } from "./animation.js";
+import { animateHero, animationMatrix } from "./animation.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (Math.floor(window.scrollY) > 0) {
-    document.body.classList.remove("no-scroll");
-    animateHero(0);
-    animationMatrix();
-  } else {
-    window.scrollTo(0, 0);
-    initializeAnimation();
-  }
-  animationSkills();
-});
-
-function initializeAnimation() {
+export function initializeAllAnimationPlus3D() {
   const computerDomContainer = document.getElementById("computer-container");
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
