@@ -55,19 +55,21 @@ plusBouton.addEventListener("click", () => {
 function cliMoreSkillAnimation() {
   linesElements.forEach((line, index) => {
     let commandSpan = line.children[3];
+    let command = commandSpan.dataset.command;
     lineTimeline
       .to(line, {
         display: "block",
         opacity: 1,
         duration: 0,
       })
+      .to({}, { duration: 0.2 })
       .to(commandSpan, {
         text: {
-          value: commandSpan.dataset.command,
+          value: command,
         },
-        duration: 2,
+        duration: command.length * 0.2,
         onComplete: () => {
-          doCommand(commandSpan.dataset.command, index, line);
+          doCommand(command, index, line);
         },
       });
   });
@@ -99,14 +101,13 @@ function doCommand(command, index, line) {
     case "clear":
       clear(index);
       break;
+    case "ls":
+      ls();
+      break;
+    default:
+      break;
   }
   gsap.to(line.children[4], {
-    text: {
-      value: "",
-    },
-    duration: 0,
-  });
-  gsap.to(line.children[3], {
     text: {
       value: "",
     },
@@ -120,4 +121,18 @@ function clear(index) {
       line.style.display = "none";
     }
   });
+
+  gsap.to(".ls-result", {
+    display: "none",
+    duration: 0,
+  });
+}
+
+function ls() {
+  gsap.to(".ls-result", {
+    display: "block",
+    opacity: 1,
+    duration: 0,
+  });
+  lineTimeline.to({}, { duration: 1 });
 }

@@ -395,6 +395,10 @@ section:nth-child(even) {
   opacity: 0;
 }
 
+.ls-result {
+  opacity: 0;
+}
+
 /* ===== contact section ===== */
 .contact-section {
   position: relative;
