@@ -1,12 +1,4 @@
 export const animateHero = (delai = 4) => {
-  gsap.registerPlugin(
-    Flip,
-    ScrollTrigger,
-    Observer,
-    Draggable,
-    MotionPathPlugin,
-    TextPlugin
-  );
   document.querySelectorAll(".no-opacity").forEach((element) => {
     element.classList.remove("no-opacity");
   });
@@ -190,6 +182,9 @@ export const animationSkills = () => {
     let backToStart = false;
 
     const move = () => {
+      if (!shouldMove) {
+        return;
+      }
       const currentX = parseFloat(skill.style.left);
       const currentY = parseFloat(skill.style.top);
 
