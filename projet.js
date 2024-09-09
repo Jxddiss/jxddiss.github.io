@@ -28,6 +28,31 @@ const projectObjList = [
         "Application d’administration faite en Angular",
       ],
     ],
+    encodedFonctionnalites: [
+      "Rm9uY3Rpb25uYWxpdMOpcw== :",
+      [
+        "R2VzdGlvbiBkZSBzb24gcHJvZmlsIGFydGlzdGlxdWU=",
+        "Rm9uY3Rpb25uYWxpdMOpcyBkZSByw6lzZWF1dGFnZSBzb2NpYWwg",
+        [
+          "RmlsIGTigJlhY3R1YWxpdMOgjkkFH45=",
+          "Y29udmVyc2F0aW9ucyBlbiB0ZW1wcyByw6llbA==",
+          "aW50ZXJhY3Rpb25zIGF2ZWMgbGVzIHB1YmxpY2F0aW9ucw==",
+        ],
+        "QXBwZWwgdmlkw6lv",
+        ["dW4gw6AgdW4", "cGx1c2lldXJzIMOgIG51bWw="],
+        "RGlmZnVzaW9ucyBlbiBkaXJlY3Q=",
+        "R2VzdGlvbiBkZSBwcm9qZXQgYXJ0aXN0aXF1ZSBjb2xsYWJvcmF0aWY=",
+        [
+          "cGFydGFnZSBkZXMgdMOpYWNoZXM=",
+          "b3JnYW5pc2F0aW9uIGRlcyDDq2NRpb24gZGUgdGFjaGVz",
+          "cGFydGFnZSBkZSBmaWzc2FnZXJpZSBkZSBncm91cGU=",
+        ],
+        "Tm90aWZpY2F0aW9uIGVuIHRlbXBzIHJlYWw=",
+        "R2Vuw6lyaXRpb24gyw6ljIGwgcMOoIGwnQVBJIGQnT3BlbiBBSQ==",
+        "R2VuZXJJ2ltYWdlIGdyw6ljaSBsJ0FQSSBkZSBTdGFiaWxpdHkgQUk=",
+        "QXXRpb24gZCdhZG1pbmlzdHJhdGlvbiBmYWl0ZSB1bmUgYW5ndWxhcg==",
+      ],
+    ],
     url: "https://artsync.tech/",
     urlRepository: "#",
   },
@@ -63,16 +88,17 @@ export const projectAnimation = () => {
 
     ScrollTrigger.create({
       trigger: "#projets",
-      start: "top 60%",
-      markers: {
-        startColor: "white",
-        endColor: "white",
-        fontSize: "18px",
-        fontWeight: "bold",
-        indent: 20,
-      },
+      start: "top 100px",
+      //   markers: {
+      //     startColor: "white",
+      //     endColor: "white",
+      //     fontSize: "18px",
+      //     fontWeight: "bold",
+      //     indent: 20,
+      //   },
       onEnter: () => {
         initializeOrResetTimeline();
+
         tlProjects
           .fromTo(
             ".projects-container",
@@ -81,14 +107,14 @@ export const projectAnimation = () => {
             },
             {
               opacity: 1,
-              duration: 0.5,
+              duration: 0.2,
               ease: "power1.inOut",
             }
           )
           .from(project, {
-            height: 0,
+            opacity: 0,
             width: 0,
-            duration: 2,
+            duration: 0.8,
             ease: "bounce.out",
           })
           .to(mediaHolder, {
@@ -135,13 +161,6 @@ export const projectAnimation = () => {
         }
 
         animateFonctionnalites(fonctionnalitesElement, fonctionnalitesDecodes);
-      },
-    });
-
-    ScrollTrigger.observe({
-      type: "wheel, touch",
-      onUp: () => {
-        allow;
       },
     });
   });

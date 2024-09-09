@@ -18,6 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -30,10 +31,10 @@
             <object type="image/svg+xml" data="assets/images/logo/logo-white-no-background.svg"
                 class="logo glitch-svg"></object>
             <ul class="sections">
-                <li><a href="#a-propos">À propos</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contactez-moi</a></li>
+                <li><a class="link-nav" data-go="#a-propos">À propos</a></li>
+                <li><a class="link-nav" data-go="#competences">Compétences</a></li>
+                <li><a class="link-nav" data-go="#projets">Projets</a></li>
+                <li><a class="link-nav" data-go="#contact">Contactez-moi</a></li>
             </ul>
         </nav>
     </header>
@@ -126,13 +127,11 @@
                                     <li>Y29udmVyc2F0aW9ucyBlbiB0ZW1wcyByw6llbA==</li>
                                     <li>aW50ZXJhY3Rpb25zIGF2ZWMgbGVzIHB1YmxpY2F0aW9ucw==</li>
                                 </ul>
-                                </li>
                                 <li>QXBwZWwgdmlkw6lv</li>
                                 <ul>
                                     <li>dW4gw6AgdW4=</li>
                                     <li>cGx1c2lldXJzIMOgIG51bWw=</li>
                                 </ul>
-                                </li>
                                 <li>RGlmZnVzaW9ucyBlbiBkaXJlY3Q=</li>
                                 <li>R2VzdGlvbiBkZSBwcm9qZXQgYXJ0aXN0aXF1ZSBjb2xsYWJvcmF0aWY=</li>
                                 <ul>
@@ -140,7 +139,6 @@
                                     <li>b3JnYW5pc2F0aW9uIGRlcyDDq2NRpb24gZGUgdGFjaGVz</li>
                                     <li>cGFydGFnZSBkZSBmaWzc2FnZXJpZSBkZSBncm91cGU=</li>
                                 </ul>
-                                </li>
                                 <li>Tm90aWZpY2F0aW9uIGVuIHRlbXBzIHJlYWw=</li>
                                 <li>R2Vuw6lyaXRpb24gyw6ljIGwgcMOoIGwnQVBJIGQnT3BlbiBBSQ==</li>
                                 <li>R2VuZXJJ2ltYWdlIGdyw6ljaSBsJ0FQSSBkZSBTdGFiaWxpdHkgQUk=</li>

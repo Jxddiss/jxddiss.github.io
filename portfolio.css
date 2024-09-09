@@ -61,11 +61,6 @@ ul {
 }
 
 /*===== styles =====*/
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
-
 body {
   overflow-x: hidden;
   background-color: var(--background-color);
