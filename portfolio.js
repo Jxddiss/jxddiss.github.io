@@ -30,18 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   terminalMoreSkills();
   projectAnimation();
 
-  logo.addEventListener("load", () => {
-    let logoSvg = logo.contentDocument.querySelector("svg");
-    logoSvg.addEventListener("click", () => {
-      document.body.classList.remove("no-scroll");
-      gsap.to(window, {
-        scrollTo: {
-          y: 0,
-          x: 0,
-        },
-        duration: 1,
-        ease: "power2",
-      });
+  let logoSvg = logo.contentDocument.querySelector("svg");
+  logoSvg.addEventListener("click", () => {
+    document.body.classList.remove("no-scroll");
+    gsap.to(window, {
+      scrollTo: "#hero",
+      duration: 1,
+      ease: "power2",
     });
   });
 
@@ -49,10 +44,16 @@ document.addEventListener("DOMContentLoaded", () => {
     btnNav.addEventListener("click", () => {
       document.body.classList.remove("no-scroll");
       let goTo = btnNav.dataset.go;
+      let offsetY = 0;
       console.log(goTo);
-
+      if (goTo.includes("projets")) {
+        offsetY = 45;
+      }
       gsap.to(window, {
-        scrollTo: goTo,
+        scrollTo: {
+          y: goTo,
+          offsetY: offsetY,
+        },
         duration: 1,
         ease: "power2",
       });
