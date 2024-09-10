@@ -180,6 +180,7 @@ export const projectAnimation = () => {
     const urlRepositoryElement = project.querySelector(
       ".links-holder .link-github"
     );
+    const descriptionElementParent = project.querySelector(".description");
 
     urlElement.href = url;
     urlRepositoryElement.href = urlRepository;
@@ -219,6 +220,9 @@ export const projectAnimation = () => {
         },
         duration: 0.5,
         ease: "power1.inOut",
+        onComplete: () => {
+          gsap.set(descriptionElementParent, { overflowY: "auto" });
+        },
       });
 
     animateFonctionnalites(
@@ -226,7 +230,7 @@ export const projectAnimation = () => {
       fonctionnalitesDecodes,
       tlProjects
     );
-    const descriptionElementParent = project.querySelector(".description");
+
     descriptionElementParent.addEventListener("scroll", descScrollHandler);
   };
 
@@ -299,6 +303,7 @@ export const projectAnimation = () => {
     const fonctionnalitesElement = project.querySelector(
       ".description .fonctionnalites"
     );
+    const descriptionElementParent = project.querySelector(".description");
 
     const tlReset = gsap.timeline();
     animateFonctionnalites(
@@ -342,11 +347,13 @@ export const projectAnimation = () => {
           opacity: 0,
           width: 0,
           zIndex: 3,
+          onComplete: () => {
+            gsap.set(descriptionElementParent, { overflowY: "hidden" });
+          },
         },
         0
       );
 
-    const descriptionElementParent = project.querySelector(".description");
     descriptionElementParent.scrollTo(0, 0);
   };
 };

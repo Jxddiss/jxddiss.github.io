@@ -14,6 +14,8 @@ gsap.registerPlugin(
 );
 
 const logo = document.querySelector(".logo");
+setupMutationObserver();
+
 function addSvgClickListener() {
   let logoSvg = logo.contentDocument.querySelector("svg");
   logoSvg.addEventListener("click", () => {
@@ -40,12 +42,6 @@ function setupMutationObserver() {
   });
 
   observer.observe(logo, { attributes: true, childList: true, subtree: true });
-}
-
-if (logo.contentDocument) {
-  setupMutationObserver();
-} else {
-  logo.addEventListener("load", addSvgClickListener);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
