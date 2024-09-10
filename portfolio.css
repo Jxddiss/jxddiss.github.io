@@ -277,12 +277,18 @@ section:nth-child(even) {
   width: 100%;
   opacity: 0;
   position: relative;
+  overflow-y: auto;
+}
+
+.projects-container::-webkit-scrollbar {
+  display: none;
 }
 
 .project {
   display: flex;
-  width: 100%;
-  height: 70%;
+  opacity: 0;
+  width: 0;
+  height: 700px;
   position: relative;
 }
 
@@ -337,6 +343,7 @@ section:nth-child(even) {
 
 .fonctionnalites {
   font-size: var(--normal-font-size);
+  padding-bottom: 3em;
 }
 .fonctionnalites ul {
   list-style: "-->  ";

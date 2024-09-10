@@ -16,7 +16,7 @@ gsap.registerPlugin(
 document.addEventListener("DOMContentLoaded", () => {
   const logo = document.querySelector(".logo");
   const btnNavList = document.querySelectorAll(".link-nav");
-  const threeActivated = false;
+  const threeActivated = true;
 
   if (Math.floor(window.scrollY) > 0 || !threeActivated) {
     document.body.classList.remove("no-scroll");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   logo.addEventListener("load", () => {
     let logoSvg = logo.contentDocument.querySelector("svg");
     logoSvg.addEventListener("click", () => {
+      document.body.classList.remove("no-scroll");
       gsap.to(window, {
         scrollTo: {
           y: 0,
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnNavList.forEach((btnNav) => {
     btnNav.addEventListener("click", () => {
+      document.body.classList.remove("no-scroll");
       let goTo = btnNav.dataset.go;
       console.log(goTo);
 
