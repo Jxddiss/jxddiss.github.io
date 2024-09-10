@@ -1,5 +1,65 @@
 const projectObjList = [
   {
+    name: "Live messenger",
+    encodedName: "QXJ0c3luYw==",
+    description:
+      "Application permetant le partage d'oeuvres artistiques et la collaboration sur des projets artistiques.",
+    encodedDescription:
+      "QXBwbGljYXRpb24gd2ViIHBlcm1ldGFudCBhdSB1dGlsaXNhdGV1ciBkZSBwYXJ0YWdlciBkaWZmw6lyZW50ZXMgb2V1dnJlcyBkJ2FydCBldCBkZSBjb2xsYWJvcmVyIHN1ciBkZXMgcHJvamV0cyBhcnRpc3RpcXVlcw==",
+    fonctionnalites: [
+      "Fonctionnalités :",
+      [
+        "Gestion de son profil artistique",
+        "Fonctionnalités de réseautage social",
+        [
+          "Fil d’actualité basé sur les abonnements",
+          "Conversations en temps réel",
+          "Interactions avec les publications",
+        ],
+        "Appel vidéo",
+        ["Un à un", "Plusieurs à plusieurs"],
+        "Diffusions en direct",
+        "Gestion de projet artistique collaboratif",
+        [
+          "Partage des tâches",
+          "Organisation des échéances",
+          "Partage de fichiers, conversation de groupe",
+        ],
+        "Notification en temps réel",
+        "Génération d’idées grâce à l’API d’Open AI",
+        "Génération d’image grâce à l’API de Stability AI",
+        "Application d’administration faite en Angular",
+      ],
+    ],
+    encodedFonctionnalites: [
+      "Rm9uY3Rpb25uYWxpdMOpcw== :",
+      [
+        "R2VzdGlvbiBkZSBzb24gcHJvZmlsIGFydGlzdGlxdWU=",
+        "Rm9uY3Rpb25uYWxpdMOpcyBkZSByw6lzZWF1dGFnZSBzb2NpYWwg",
+        [
+          "RmlsIGTigJlhY3R1YWxpdMOgjkkFH45=",
+          "Y29udmVyc2F0aW9ucyBlbiB0ZW1wcyByw6llbA==",
+          "aW50ZXJhY3Rpb25zIGF2ZWMgbGVzIHB1YmxpY2F0aW9ucw==",
+        ],
+        "QXBwZWwgdmlkw6lv",
+        ["dW4gw6AgdW4", "cGx1c2lldXJzIMOgIG51bWw="],
+        "RGlmZnVzaW9ucyBlbiBkaXJlY3Q=",
+        "R2VzdGlvbiBkZSBwcm9qZXQgYXJ0aXN0aXF1ZSBjb2xsYWJvcmF0aWY=",
+        [
+          "cGFydGFnZSBkZXMgdMOpYWNoZXM=",
+          "b3JnYW5pc2F0aW9uIGRlcyDDq2NRpb24gZGUgdGFjaGVz",
+          "cGFydGFnZSBkZSBmaWzc2FnZXJpZSBkZSBncm91cGU=",
+        ],
+        "Tm90aWZpY2F0aW9uIGVuIHRlbXBzIHJlYWw=",
+        "R2Vuw6lyaXRpb24gyw6ljIGwgcMOoIGwnQVBJIGQnT3BlbiBBSQ==",
+        "R2VuZXJJ2ltYWdlIGdyw6ljaSBsJ0FQSSBkZSBTdGFiaWxpdHkgQUk=",
+        "QXXRpb24gZCdhZG1pbmlzdHJhdGlvbiBmYWl0ZSB1bmUgYW5ndWxhcg==",
+      ],
+    ],
+    url: "https://msn.nicholsonrj.com/",
+    urlRepository: "https://github.com/Jxddiss/msn",
+  },
+  {
     name: "ArtSync",
     encodedName: "QXJ0c3luYw==",
     description:
@@ -57,73 +117,12 @@ const projectObjList = [
       ],
     ],
     url: "https://artsync.tech/",
-    urlRepository: "#",
-  },
-  {
-    name: "Live messenger",
-    encodedName: "QXJ0c3luYw==",
-    description:
-      "Application permetant le partage d'oeuvres artistiques et la collaboration sur des projets artistiques.",
-    encodedDescription:
-      "QXBwbGljYXRpb24gd2ViIHBlcm1ldGFudCBhdSB1dGlsaXNhdGV1ciBkZSBwYXJ0YWdlciBkaWZmw6lyZW50ZXMgb2V1dnJlcyBkJ2FydCBldCBkZSBjb2xsYWJvcmVyIHN1ciBkZXMgcHJvamV0cyBhcnRpc3RpcXVlcw==",
-    fonctionnalites: [
-      "Fonctionnalités :",
-      [
-        "Gestion de son profil artistique",
-        "Fonctionnalités de réseautage social",
-        [
-          "Fil d’actualité basé sur les abonnements",
-          "Conversations en temps réel",
-          "Interactions avec les publications",
-        ],
-        "Appel vidéo",
-        ["Un à un", "Plusieurs à plusieurs"],
-        "Diffusions en direct",
-        "Gestion de projet artistique collaboratif",
-        [
-          "Partage des tâches",
-          "Organisation des échéances",
-          "Partage de fichiers, conversation de groupe",
-        ],
-        "Notification en temps réel",
-        "Génération d’idées grâce à l’API d’Open AI",
-        "Génération d’image grâce à l’API de Stability AI",
-        "Application d’administration faite en Angular",
-      ],
-    ],
-    encodedFonctionnalites: [
-      "Rm9uY3Rpb25uYWxpdMOpcw== :",
-      [
-        "R2VzdGlvbiBkZSBzb24gcHJvZmlsIGFydGlzdGlxdWU=",
-        "Rm9uY3Rpb25uYWxpdMOpcyBkZSByw6lzZWF1dGFnZSBzb2NpYWwg",
-        [
-          "RmlsIGTigJlhY3R1YWxpdMOgjkkFH45=",
-          "Y29udmVyc2F0aW9ucyBlbiB0ZW1wcyByw6llbA==",
-          "aW50ZXJhY3Rpb25zIGF2ZWMgbGVzIHB1YmxpY2F0aW9ucw==",
-        ],
-        "QXBwZWwgdmlkw6lv",
-        ["dW4gw6AgdW4", "cGx1c2lldXJzIMOgIG51bWw="],
-        "RGlmZnVzaW9ucyBlbiBkaXJlY3Q=",
-        "R2VzdGlvbiBkZSBwcm9qZXQgYXJ0aXN0aXF1ZSBjb2xsYWJvcmF0aWY=",
-        [
-          "cGFydGFnZSBkZXMgdMOpYWNoZXM=",
-          "b3JnYW5pc2F0aW9uIGRlcyDDq2NRpb24gZGUgdGFjaGVz",
-          "cGFydGFnZSBkZSBmaWzc2FnZXJpZSBkZSBncm91cGU=",
-        ],
-        "Tm90aWZpY2F0aW9uIGVuIHRlbXBzIHJlYWw=",
-        "R2Vuw6lyaXRpb24gyw6ljIGwgcMOoIGwnQVBJIGQnT3BlbiBBSQ==",
-        "R2VuZXJJ2ltYWdlIGdyw6ljaSBsJ0FQSSBkZSBTdGFiaWxpdHkgQUk=",
-        "QXXRpb24gZCdhZG1pbmlzdHJhdGlvbiBmYWl0ZSB1bmUgYW5ndWxhcg==",
-      ],
-    ],
-    url: "https://artsync.tech/",
-    urlRepository: "#",
+    urlRepository: "https://github.com/Jxddiss",
   },
 ];
 
 export const projectAnimation = () => {
   const projects = document.querySelectorAll(".project");
-  let tlProjects = gsap.timeline();
   let currentIndex = 0;
   let scrollObserver = ScrollTrigger.observe({
     type: "wheel, touch",
@@ -190,6 +189,7 @@ export const projectAnimation = () => {
         {
           opacity: 0,
           width: 0,
+          zIndex: 4,
         },
         {
           opacity: 1,
@@ -339,6 +339,7 @@ export const projectAnimation = () => {
         {
           opacity: 0,
           width: 0,
+          zIndex: 3,
         },
         0
       );
