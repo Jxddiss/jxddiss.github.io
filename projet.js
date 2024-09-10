@@ -124,21 +124,24 @@ const projectObjList = [
 export const projectAnimation = () => {
   const projects = document.querySelectorAll(".project");
   let currentIndex = 0;
-  let scrollObserver = ScrollTrigger.observe({
-    type: "wheel, touch",
-    tolerance: 1,
-    onEnable: () => {
-      document.body.classList.add("no-scroll");
-    },
-  });
-  scrollObserver.disable();
+  //   let scrollObserver = ScrollTrigger.observe({
+  //     type: "wheel, touch",
+  //     tolerance: 1,
+  //     onUp: () => {
+  //       document.body.classList.add("no-scroll");
+  //     },
+  //     onDown: () => {
+  //       document.body.classList.add("no-scroll");
+  //     },
+  //   });
+  //   scrollObserver.disable();
 
   ScrollTrigger.create({
     trigger: "#projets",
-    start: "top 100px",
+    start: "top +=300",
     // markers: true,
     onEnter: () => {
-      scrollObserver.enable();
+      //   scrollObserver.enable();
       gsap.fromTo(
         ".projects-container",
         {
@@ -268,7 +271,6 @@ export const projectAnimation = () => {
 
       if (scrollTop + clientHeight >= scrollHeight) {
         debounce = true;
-        console.log("End");
         resetOneProject(projects[currentIndex], currentIndex);
         currentIndex++;
         if (currentIndex > projects.length - 1) {

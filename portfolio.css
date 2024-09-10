@@ -198,6 +198,7 @@ section:nth-child(even) {
   position: relative;
   border-radius: 2%;
   transition: box-shadow 0.5s ease-in-out;
+  /* flex-wrap: wrap;  a ajoute media query*/
 }
 
 .backlight {
@@ -345,7 +346,7 @@ section:nth-child(even) {
   padding-bottom: 3em;
 }
 .fonctionnalites ul {
-  list-style: "-->  ";
+  list-style: "//  ";
   margin-left: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -363,6 +364,7 @@ section:nth-child(even) {
 
 .fonctionnalites > ul > ul {
   list-style: ">>  ";
+  margin-left: 3.5em;
 }
 
 .project .links-holder {

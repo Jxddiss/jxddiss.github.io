@@ -13,10 +13,44 @@ gsap.registerPlugin(
   ScrollToPlugin
 );
 
+const logo = document.querySelector(".logo");
+function addSvgClickListener() {
+  let logoSvg = logo.contentDocument.querySelector("svg");
+  logoSvg.addEventListener("click", () => {
+    document.body.classList.remove("no-scroll");
+    gsap.to(window, {
+      scrollTo: {
+        y: 0,
+      },
+      duration: 1,
+      ease: "power2",
+    });
+  });
+}
+
+function setupMutationObserver() {
+  const observer = new MutationObserver(() => {
+    if (logo.contentDocument) {
+      const logoSvg = logo.contentDocument.querySelector("svg");
+      if (logoSvg) {
+        addSvgClickListener();
+        observer.disconnect();
+      }
+    }
+  });
+
+  observer.observe(logo, { attributes: true, childList: true, subtree: true });
+}
+
+if (logo.contentDocument) {
+  setupMutationObserver();
+} else {
+  logo.addEventListener("load", addSvgClickListener);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const logo = document.querySelector(".logo");
   const btnNavList = document.querySelectorAll(".link-nav");
-  const threeActivated = true;
+  const threeActivated = false;
 
   if (Math.floor(window.scrollY) > 0 || !threeActivated) {
     document.body.classList.remove("no-scroll");
@@ -30,22 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
   terminalMoreSkills();
   projectAnimation();
 
-  let logoSvg = logo.contentDocument.querySelector("svg");
-  logoSvg.addEventListener("click", () => {
-    document.body.classList.remove("no-scroll");
-    gsap.to(window, {
-      scrollTo: "#hero",
-      duration: 1,
-      ease: "power2",
-    });
-  });
-
   btnNavList.forEach((btnNav) => {
     btnNav.addEventListener("click", () => {
       document.body.classList.remove("no-scroll");
       let goTo = btnNav.dataset.go;
       let offsetY = 0;
-      console.log(goTo);
+
       if (goTo.includes("projets")) {
         offsetY = 45;
       }

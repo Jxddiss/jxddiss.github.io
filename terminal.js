@@ -28,6 +28,9 @@ export const terminalMoreSkills = () => {
   };
 
   plusBouton.addEventListener("click", () => {
+    if (plusSkillsDialogue.open) {
+      return;
+    }
     if (tl) {
       tl.kill();
       tl = gsap.timeline();
