@@ -151,6 +151,60 @@ const projectObjList = [
     url: "https://artsync.tech/",
     urlRepository: "https://github.com/Jxddiss",
   },
+  {
+    name: "UniBank",
+    encodedName: "TGl2ZSBNZXNzZW5nZXI=",
+    description:
+      "Application native réalisé avec JavaFX qui simule le fonctionnement d'un guichet de banque",
+    encodedDescription:
+      "QXBwbGljYXRpb24gbmF0aXZlIHLDqWFsaXPDqSBhdmVjIEphdmFGWCBxdWkgc2ltdWxlIGxlIGZvbmN0aW9ubmVtZW50IGQndW4gZ3VpY2hldCBkZSBiYW5xdWU=",
+    fonctionnalites: [
+      "Détails :",
+      [
+        "Validation de l'identité des clients",
+        "Blocage du compte après trois essais",
+        "Dépôt, retrait et transfert entre ses comptes",
+        "Possibilité de demander l'ouverture d'un nouveau compte",
+        "Marge de crédit affectée lors de retrait supérieur au solde",
+        "Limite, retrait, dépôt",
+        "Frais de facture",
+        "Limite d'argent dans le guichet, doit être remplie régulièrement",
+        "Panel Administrateur",
+        "Création de clients",
+        "Création de compte",
+        "Approuver les demandes d'ouverture de comptes des clients",
+        "Remplir le guichet",
+        "Fermer et ouvrir le guichet",
+        "Prélever des montants aux marges hypothécaires",
+        "Technologies utilisées",
+        ["Java", "JavaFX"],
+      ],
+    ],
+    encodedFonctionnalites: [
+      "RMOpdGFpbHMgOg==",
+      [
+        "VmFsaWRhdGlvbiBkZSBsJ2lkZW50aXTDqSBkZXMgY2xpZW50cw==",
+        "QmxvY2FnZSBkdSBjb21wdGUgYXByw6hzIHRyb2lzIGVzc2Fpcw==",
+        "RMOpcMO0dCwgcmV0cmFpdCBldCB0cmFuc2ZlcnQgZW50cmUgc2VzIGNvbXB0ZXM=",
+        "UG9zc2liaWxpdMOpIGRlIGRlbWFuZGVyIGwnb3V2ZXJ0dXJlIGQndW4gbm91dmVhdSBjb21wdGU=",
+        "TWFyZ2UgZGUgY3LDqWRpdCBhZmZlY3TDqWUgbG9ycyBkZSByZXRyYWl0IHN1cMOpcmlldXIgYXUgc29sZGU=",
+        "TGltaXRlLCByZXRyYWl0LCBkw6lww7R0",
+        "RnJhaXMgZGUgZmFjdHVyZQ==",
+        "TGltaXRlIGQnYXJnZW50IGRhbnMgbGUgZ3VpY2hldCwgZG9pdCDDqnRyZSByZW1wbGllIHLDqWd1bGnDqHJlbWVudA==",
+        "UGFuZWwgQWRtaW5pc3RyYXRldXI=",
+        "Q3LDqWF0aW9uIGRlIGNsaWVudHM=",
+        "Q3LDqWF0aW9uIGRlIGNvbXB0ZQ==",
+        "QXBwcm91dmVyIGxlcyBkZW1hbmRlcyBkJ291dmVydHVyZSBkZSBjb21wdGVzIGRlcyBjbGllbnRz",
+        "UmVtcGxpciBsZSBndWljaGV0",
+        "RmVybWVyIGV0IG91dnJpciBsZSBndWljaGV0",
+        "UHLDqWxldmVyIGRlcyBtb250YW50cyBhdXggbWFyZ2VzIGh5cG90aMOpY2FpcmVz",
+        "VGVjaG5vbG9naWVzIHV0aWxpc8OpZXM=",
+        ["SmF2YQ==", "SmF2YUZY"],
+      ],
+    ],
+    url: "",
+    urlRepository: "https://github.com/Jxddiss/Projet_guichet_banque",
+  },
 ];
 
 export const projectAnimation = (scrollAnimShouldPlay) => {
@@ -213,8 +267,12 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
     );
     const descriptionElementParent = project.querySelector(".description");
 
-    urlElement.href = url;
-    urlRepositoryElement.href = urlRepository;
+    if (urlElement) {
+      urlElement.href = url;
+    }
+    if (urlRepository) {
+      urlRepositoryElement.href = urlRepository;
+    }
 
     const tlProjects = gsap.timeline();
 
@@ -260,7 +318,10 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       if (index === i) {
         date.setAttribute("past", "false");
         date.setAttribute("current", "true");
-      } else if (index < i) {
+      } else if (index > i) {
+        date.setAttribute("past", "false");
+        date.setAttribute("current", "false");
+      } else {
         date.setAttribute("past", "true");
         date.setAttribute("current", "false");
       }
@@ -432,7 +493,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       console.log("currentIndex", currentIndex);
       if (currentIndex === index) return;
       resetOneProject(projects[currentIndex], currentIndex);
-      animateOneProject(projects[nextIndex], nextIndex);
+      animateOneProject(projects[index], index);
     });
   });
 };

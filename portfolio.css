@@ -425,7 +425,8 @@ section:nth-child(even) {
   flex-direction: column;
 }
 
-.description .collaborateur a {
+.description .collaborateur a,
+.description .collaborateur span + span {
   margin-left: 4em;
   color: var(--accent-color);
 }
