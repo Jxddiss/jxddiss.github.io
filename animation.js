@@ -160,84 +160,20 @@ export const animationSkills = () => {
 
   let shouldMove = true;
 
-  const moveSkillAround = (skill) => {
-    const startPosition = {
-      x: parseFloat(skill.style.left),
-      y: parseFloat(skill.style.top),
-    };
-    if (!shouldMove) {
-      return;
-    }
-
-    let animation = gsap.to({}, {});
-    let backToStart = false;
-
-    const move = () => {
-      if (!shouldMove) {
-        return;
-      }
-      const currentX = parseFloat(skill.style.left);
-      const currentY = parseFloat(skill.style.top);
-
-      const deltaX = (Math.random() - 0.5) * 40;
-      const deltaY = (Math.random() - 0.5) * 40;
-
-      const posX = Math.min(
-        containerWidth - skill.offsetWidth,
-        Math.max(0, currentX + deltaX)
-      );
-      const posY = Math.min(
-        containerHeight - skill.offsetHeight,
-        Math.max(0, currentY + deltaY)
-      );
-
-      animation = gsap.to(skill, {
-        top: posY,
-        left: posX,
-        duration: 3 + Math.random() * 2,
-        ease: "power1.inOut",
-        onComplete: () => {
-          if (backToStart) {
-            backToStart = false;
-            animation = gsap.to(skill, {
-              top: startPosition.y,
-              left: startPosition.x,
-              duration: 2,
-              ease: "power1.inOut",
-              onComplete: () => {
-                move();
-              },
-            });
-          } else {
-            move();
-          }
-        },
-      });
-    };
-
-    move();
-
+  const addTextAnimEvent = (skill) => {
     let tlEnter = gsap.timeline();
 
     skill.addEventListener("mouseover", () => {
-      shouldMove = false;
-      animation.pause();
       gsap.to(skill, {
         background: "#000",
       });
       mouseOverAnimationTextAnimation(skill, tlEnter);
     });
     skill.addEventListener("mouseout", () => {
-      shouldMove = true;
-      animation.resume();
       gsap.to(skill, {
         background: "transparent",
       });
     });
-
-    setInterval(() => {
-      backToStart = true;
-    }, 3000);
   };
 
   const mouseOverAnimationTextAnimation = (skill, tlEnter) => {
@@ -324,7 +260,6 @@ export const animationSkills = () => {
     onEnter: () => {
       skillsList.forEach((skill, index) => {
         const { posX, posY } = generatePosition(skillsList.length, index);
-
         tl.fromTo(
           skill,
           {
@@ -343,8 +278,11 @@ export const animationSkills = () => {
             delay: index * 0.01,
             clearProps: "scale",
             onComplete: () => {
-              shouldMove = true;
-              moveSkillAround(skill);
+              if (index == skillsList.length - 1) {
+                skillsList.forEach((skill) => {
+                  addTextAnimEvent(skill);
+                });
+              }
             },
           }
         );
@@ -356,7 +294,7 @@ export const animationSkills = () => {
         gsap.to(skill, {
           scale: 0,
           opacity: 0,
-          duration: 1,
+          duration: 0.2,
           clearProps: true,
         });
       });

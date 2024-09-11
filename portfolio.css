@@ -331,9 +331,10 @@ section:nth-child(even) {
   }
 }
 
-.medias-holder:hover ul {
+/* .medias-holder:has(~ .play-demo:hover) ul */
+/* .medias-holder:hover ul {
   animation-play-state: paused;
-}
+} */
 
 .medias-holder img {
   display: block;
@@ -350,6 +351,45 @@ section:nth-child(even) {
 .medias-holder img:nth-child(odd) {
   margin-left: auto;
   margin-right: 10%;
+}
+
+.play-demo {
+  position: absolute;
+  left: 30px;
+  bottom: 20px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 5px 20px 5px 20px;
+  border-radius: 2%;
+  border: none;
+  transition: outline 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid var(--border-color);
+}
+
+.play-demo i {
+  font-size: var(--h2-font-size);
+}
+
+.play-demo:hover {
+  outline: 1px solid var(--accent-color);
+  cursor: url("assets/images/cursor_pointer.png"), pointer;
+}
+
+.play-demo:active {
+  border: 1px solid var(--border-color);
+}
+
+#video-dialog {
+  z-index: 4000 !important;
+}
+
+#video-dialog video {
+  height: 70vh;
+  object-fit: contain;
 }
 
 .description {
@@ -543,6 +583,94 @@ section:nth-child(even) {
   visibility: hidden;
 }
 
+.skill:hover {
+  animation-play-state: paused;
+}
+
+.anim1 {
+  animation: skillsAnimation1 20s infinite;
+}
+
+.anim1:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+
+.anim1:nth-of-type(2) {
+  animation-delay: 0.5s;
+}
+
+.anim2 {
+  animation: skillsAnimation1 20s reverse infinite;
+}
+
+.anim2:nth-of-type(1) {
+  animation-delay: 0.5s;
+}
+
+.anim2:nth-of-type(2) {
+  animation-delay: 0.3s;
+}
+
+.anim3 {
+  animation: skillsAnimation2 20s reverse infinite;
+}
+
+.anim3:nth-of-type(3) {
+  animation-delay: 0.7s;
+}
+
+.anim3:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+@keyframes skillsAnimation1 {
+  0% {
+    transform: translate(-6%, -4%);
+  }
+  20% {
+    transform: translate(-10%, -1%);
+  }
+  40% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(7%, 4%);
+  }
+  60% {
+    transform: translate(2%, 8%);
+  }
+  80% {
+    transform: translate(0, 1%);
+  }
+  100% {
+    transform: translate(-6%, -4%);
+  }
+}
+
+@keyframes skillsAnimation2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-20%, -9%);
+  }
+  40% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10%, 15%);
+  }
+  60% {
+    transform: translate(2%, 5%);
+  }
+  80% {
+    transform: translate(0, 15%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .skill i {
   font-size: 4rem;
   pointer-events: none;
@@ -579,7 +707,8 @@ section:nth-child(even) {
   padding-right: 3px;
 }
 
-#more-skills {
+#more-skills,
+#video-dialog {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -594,7 +723,8 @@ section:nth-child(even) {
   overflow: hidden;
 }
 
-#more-skills[open] {
+#more-skills[open],
+#video-dialog[open] {
   display: flex;
   flex-direction: column;
   gap: 10px;

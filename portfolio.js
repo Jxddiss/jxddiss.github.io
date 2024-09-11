@@ -57,6 +57,16 @@ function setupMutationObserver() {
 document.addEventListener("DOMContentLoaded", () => {
   const btnNavList = document.querySelectorAll(".link-nav");
   const threeActivated = true;
+  const btnPlayDemoProject = document.querySelectorAll(".play-demo");
+  const playVideoDialog = document.getElementById("video-dialog");
+  const vidDialogTimeline = gsap.timeline();
+  vidDialogTimeline.to(playVideoDialog, {
+    height: "auto",
+    width: "auto",
+    duration: 0.5,
+    ease: "bounce.out",
+  });
+  vidDialogTimeline.pause();
 
   if (Math.floor(window.scrollY) > 0 || !threeActivated) {
     document.body.classList.remove("no-scroll");
@@ -93,6 +103,49 @@ document.addEventListener("DOMContentLoaded", () => {
           setScrollanimationShouldPlay(true);
         },
       });
+    });
+  });
+
+  const closeVidHandler = (event) => {
+    if (!playVideoDialog.contains(event.target)) {
+      if (!playVideoDialog.open) {
+        return;
+      }
+      vidDialogTimeline.reverse();
+      setTimeout(() => {
+        playVideoDialog.close();
+      }, 500);
+      document.removeEventListener("click", closeVidHandler);
+    }
+  };
+
+  btnPlayDemoProject.forEach((btn) => {
+    const tlText = gsap.timeline();
+    const textElem = btn.querySelector(".play-text");
+    tlText.to(textElem, {
+      text: {
+        value: "Jouez la démo",
+      },
+      duration: 0.7,
+    });
+    tlText.pause();
+    btn.addEventListener("mouseover", () => {
+      tlText.play();
+    });
+
+    btn.addEventListener("mouseout", () => {
+      tlText.reverse();
+    });
+
+    btn.addEventListener("click", () => {
+      if (playVideoDialog.open) return;
+      playVideoDialog.children[0].src = btn.dataset.video;
+      playVideoDialog.children[0].setAttribute("autoplay", "");
+      playVideoDialog.show();
+      vidDialogTimeline.play();
+      setTimeout(() => {
+        document.addEventListener("click", closeVidHandler);
+      }, 100);
     });
   });
 });
