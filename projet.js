@@ -60,8 +60,8 @@ const projectObjList = [
         ],
       ],
     ],
-    url: "https://example.com/live-messenger",
-    urlRepository: "https://github.com/example/live-messenger",
+    url: "https://msn.nicholsonrj.com/",
+    urlRepository: "https://github.com/Jxddiss/msn",
   },
   {
     name: "ArtSync",
@@ -150,6 +150,40 @@ const projectObjList = [
     ],
     url: "https://artsync.tech/",
     urlRepository: "https://github.com/Jxddiss",
+  },
+  {
+    name: "Jeu Pendu",
+    encodedName: "SmV1IFBlbmR1=",
+    description:
+      "Classique jeu du pendu sur Android, Le joueur a six ballon pour deviné le mot préalablement choisi en sélectionnant une lettre à la fois. À chaque lettre érroné il perd un ballon. S'il les perds tous, la partie est perdu.",
+    encodedDescription:
+      "Q2xhc3NpcXVlIGpldSBkdSBwZW5kdSBzdXIgQW5kcm9pZCwgTGUgam91ZXVyIGEgc2l4IGJhbGxvbiBwb3VyIGRldmluw6kgbGUgbW90IHByw6lhbGFibGVtZW50IGNob2lzaSBlbiBzw6lsZWN0aW9ubmFudCB1bmUgbGV0dHJlIMOgIGxhIGZvaXMuIMOAIGNoYXF1ZSBsZXR0cmUgw6lycm9uw6kgaWwgcGVyZCB1biBiYWxsb24uIFMnaWwgbGVzIHBlcmRzIHRvdXMsIGxhIHBhcnRpZSBlc3QgcGVyZHUu",
+    fonctionnalites: [
+      "Détails :",
+      [
+        "Validation de l'identité des clients",
+        "Blocage du compte après trois essais",
+        "Dépôt, retrait et transfert entre ses comptes",
+        "Possibilité de demander l'ouverture d'un nouveau compte",
+        "Marge de crédit affectée lors de retrait supérieur au solde",
+        "Technologies utilisées",
+        ["Kotlin", "SQLite"],
+      ],
+    ],
+    encodedFonctionnalites: [
+      "RMOpdGFpbHMgOg==",
+      [
+        "U2l4IHZ1ZXMgKGFjY3VlaWwsIHByw6lmw6lyZW5jZXMsIGhpc3RvcmlxdWUsIGRpY3Rpb25uYWlyZSBldCBqZXUpIA==",
+        "SW50ZXJuYXRpb25hbGlzYXRpb24gQW5nbGFpcy9GcmFuw6dhaXM=",
+        "Q2hvaXggZGUgbGEgbGFuZ3VlIGV0IGRlIGxhIGRpZmZpY3VsdMOpIChwcsOpZsOpcmVuY2VzKQ==",
+        "QWpvdXQgZGUgbW90cyBwZXJzb25uYWxpc8OpLCBlbnJlZ2lzdHLDqSBkYW5zIHVuZSBiYXNlIGRlIGRvbm7DqWVzIFNRTGl0ZQ==",
+        "SGlzdG9yaXF1ZSBkZXMgcGFydGllcyBqb3XDqXMgYXZlYyBsZSByw6lzdWx0YXQgKFNRTGl0ZSk=",
+        "VGVjaG5vbG9naWVzIHV0aWxpc8OpZXM=",
+        ["S290bGlu", "U1FMaXRl"],
+      ],
+    ],
+    url: "",
+    urlRepository: "https://github.com/Jxddiss/jeu_pendu",
   },
   {
     name: "UniBank",
