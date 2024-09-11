@@ -290,21 +290,48 @@ section:nth-child(even) {
   width: 0;
   height: 700px;
   position: relative;
+  overflow: hidden;
+  user-select: none;
 }
 
 .medias-holder {
-  height: 100%;
+  min-height: 100%;
   width: 50%;
   padding: 1em;
-  overflow-y: auto;
+  --gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  user-select: none;
 }
 
-.medias-holder::-webkit-scrollbar {
-  display: none;
+.medias-holder ul {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: 100%;
+  min-height: 100%;
+  justify-content: space-between;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.medias-holder:hover ul {
+  animation-play-state: paused;
 }
 
 .medias-holder img {
   display: block;
+  max-height: 50%;
+  max-width: 50%;
+  object-fit: contain;
 }
 
 .medias-holder img:nth-child(even) {
@@ -432,6 +459,10 @@ section:nth-child(even) {
 }
 
 .date[past="true"] .date-circle {
+  background: rgba(var(--accent-color-rgb), 0.4);
+}
+
+.date[current="true"] .date-circle {
   background: var(--accent-color);
 }
 
@@ -444,8 +475,9 @@ section:nth-child(even) {
   right: -5px;
 }
 
-.date[past="true"] .date-line {
+.date .date-line-overlay {
   background: var(--accent-color);
+  left: 120%;
 }
 
 /* ===== skills section ===== */

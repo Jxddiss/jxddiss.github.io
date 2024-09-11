@@ -46,7 +46,7 @@ function setupMutationObserver() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnNavList = document.querySelectorAll(".link-nav");
-  const threeActivated = false;
+  const threeActivated = true;
 
   if (Math.floor(window.scrollY) > 0 || !threeActivated) {
     document.body.classList.remove("no-scroll");
