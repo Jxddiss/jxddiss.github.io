@@ -459,11 +459,11 @@ section:nth-child(even) {
 }
 
 .date[past="true"] .date-circle {
-  background: rgba(var(--accent-color-rgb), 0.4);
+  background: var(--accent-color);
 }
 
 .date[current="true"] .date-circle {
-  background: var(--accent-color);
+  background: rgba(var(--accent-color-rgb), 0.4);
 }
 
 .date-line {
