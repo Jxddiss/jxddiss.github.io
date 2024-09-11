@@ -230,7 +230,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
           opacity: 1,
           width: "100%",
           duration: 0.8,
-          ease: "bounce.out",
+          ease: "power1.inOut",
         }
       )
       .to(mediaHolder, {

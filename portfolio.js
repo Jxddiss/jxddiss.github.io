@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnNav.addEventListener("click", () => {
       document.body.classList.remove("no-scroll");
       let goTo = btnNav.dataset.go;
-      let offsetY = 0;
+      let offsetY = 10;
 
       if (goTo.includes("projets")) {
         offsetY = 45;
