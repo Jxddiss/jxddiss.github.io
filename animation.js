@@ -220,6 +220,7 @@ export const animationSkills = () => {
     let tlEnter = gsap.timeline();
 
     skill.addEventListener("mouseover", () => {
+      shouldMove = false;
       animation.pause();
       gsap.to(skill, {
         background: "#000",
@@ -227,12 +228,11 @@ export const animationSkills = () => {
       mouseOverAnimationTextAnimation(skill, tlEnter);
     });
     skill.addEventListener("mouseout", () => {
-      {
-        animation.resume();
-        gsap.to(skill, {
-          background: "transparent",
-        });
-      }
+      shouldMove = true;
+      animation.resume();
+      gsap.to(skill, {
+        background: "transparent",
+      });
     });
 
     setInterval(() => {
@@ -323,7 +323,6 @@ export const animationSkills = () => {
     // markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
     onEnter: () => {
       skillsList.forEach((skill, index) => {
-        shouldMove = true;
         const { posX, posY } = generatePosition(skillsList.length, index);
 
         tl.fromTo(
@@ -343,7 +342,10 @@ export const animationSkills = () => {
             ease: "power1.inOut",
             delay: index * 0.01,
             clearProps: "scale",
-            onComplete: () => moveSkillAround(skill),
+            onComplete: () => {
+              shouldMove = true;
+              moveSkillAround(skill);
+            },
           }
         );
       });

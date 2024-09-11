@@ -13,6 +13,15 @@ gsap.registerPlugin(
   ScrollToPlugin
 );
 
+let scrollAnimShouldPlay = true;
+export function getScrollAnimShouldPlay() {
+  return scrollAnimShouldPlay;
+}
+
+function setScrollanimationShouldPlay(value) {
+  scrollAnimShouldPlay = value;
+}
+
 const logo = document.querySelector(".logo");
 setupMutationObserver();
 
@@ -20,6 +29,7 @@ function addSvgClickListener() {
   let logoSvg = logo.contentDocument.querySelector("svg");
   logoSvg.addEventListener("click", () => {
     document.body.classList.remove("no-scroll");
+    setScrollanimationShouldPlay(false);
     gsap.to(window, {
       scrollTo: {
         y: 0,
@@ -68,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (goTo.includes("projets")) {
         offsetY = 45;
+        setScrollanimationShouldPlay(true);
+      } else {
+        setScrollanimationShouldPlay(false);
       }
       gsap.to(window, {
         scrollTo: {
@@ -76,6 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         duration: 1,
         ease: "power2",
+        onComplete: () => {
+          setScrollanimationShouldPlay(true);
+        },
       });
     });
   });

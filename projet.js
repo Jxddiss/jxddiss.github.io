@@ -1,3 +1,5 @@
+import { getScrollAnimShouldPlay } from "./portfolio.js";
+
 const projectObjList = [
   {
     name: "Live Messenger",
@@ -151,7 +153,7 @@ const projectObjList = [
   },
 ];
 
-export const projectAnimation = () => {
+export const projectAnimation = (scrollAnimShouldPlay) => {
   const projects = document.querySelectorAll(".project");
   const dateList = document.querySelectorAll(".date");
   const dateLineOverlays = document.querySelectorAll(".date-line-overlay");
@@ -175,6 +177,14 @@ export const projectAnimation = () => {
         }
       );
       animateOneProject(projects[currentIndex], currentIndex);
+      if (getScrollAnimShouldPlay()) {
+        gsap.to(window, {
+          scrollTo: {
+            y: "#projets",
+            offsetY: 45,
+          },
+        });
+      }
     },
     onLeaveBack: () => {
       resetOneProject(projects[currentIndex], currentIndex);

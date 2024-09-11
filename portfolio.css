@@ -13,6 +13,14 @@
   --big-font-size: 2rem;
 }
 
+::-moz-selection {
+  background: rgba(var(--accent-color-rgb), 0.4);
+}
+
+::selection {
+  background: rgba(var(--accent-color-rgb), 0.4);
+}
+
 *,
 *::before,
 *::after {
@@ -292,7 +300,6 @@ section:nth-child(even) {
   height: 700px;
   position: relative;
   overflow: hidden;
-  user-select: none;
 }
 
 .medias-holder {
