@@ -155,15 +155,6 @@ export const animationSkills = () => {
     let posY =
       row * cellHeight + cellHeight / 2 - skillsList[index].offsetHeight / 2;
 
-    // const offsetRangeX = cellWidth * 0.2;
-    // const offsetRangeY = cellHeight * 0.2;
-
-    // posX += (Math.random() - 0.5) * offsetRangeX;
-    // posY += (Math.random() - 0.5) * offsetRangeY;
-
-    // posX = Math.min(containerWidth - skillsList[index].offsetWidth, Math.max(0, posX));
-    // posY = Math.min(containerHeight - skillsList[index].offsetHeight, Math.max(0, posY));
-
     return { posX, posY };
   };
 
@@ -211,7 +202,7 @@ export const animationSkills = () => {
             animation = gsap.to(skill, {
               top: startPosition.y,
               left: startPosition.x,
-              duration: 3 + Math.random() * 2,
+              duration: 2,
               ease: "power1.inOut",
               onComplete: () => {
                 move();

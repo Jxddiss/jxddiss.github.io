@@ -379,6 +379,12 @@ section:nth-child(even) {
 
 .description .collaborateur a {
   margin-left: 4em;
+  color: var(--accent-color);
+}
+
+.description .collaborateur a:hover {
+  cursor: url(assets/images/cursor_pointer.png), pointer;
+  scale: 1.05;
 }
 
 .fonctionnalites {
