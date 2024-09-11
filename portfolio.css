@@ -10,6 +10,7 @@
   --h2-font-size: 3rem;
   --h3-font-size: 2.5rem;
   --normal-font-size: 1.5rem;
+  --big-font-size: 2rem;
 }
 
 *,
@@ -368,9 +369,21 @@ section:nth-child(even) {
   word-wrap: break-word;
 }
 
+.description .collaborateur {
+  font-weight: bold;
+  font-size: var(--big-font-size);
+  padding-bottom: 6em;
+  display: flex;
+  flex-direction: column;
+}
+
+.description .collaborateur a {
+  margin-left: 4em;
+}
+
 .fonctionnalites {
   font-size: var(--normal-font-size);
-  padding-bottom: 3em;
+  padding-bottom: 1em;
 }
 .fonctionnalites ul {
   list-style: "//  ";
