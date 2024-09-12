@@ -426,9 +426,9 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
         projects[currentIndex].querySelector(".description");
       const scrollTop = descriptionElementParent.scrollTop;
       const scrollHeight = descriptionElementParent.scrollHeight;
-      const clientHeight = descriptionElementParent.clientHeight;
+      const offsetHeight = descriptionElementParent.offsetHeight;
 
-      if (scrollTop + clientHeight >= scrollHeight) {
+      if (offsetHeight + scrollTop >= scrollHeight - 5) {
         debounce = true;
         resetOneProject(projects[currentIndex], currentIndex);
         animateOneProject(projects[nextIndex], nextIndex);

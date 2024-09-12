@@ -141,7 +141,7 @@ export const animationSkills = () => {
   const tl = gsap.timeline();
 
   const generatePosition = (nbSkills, index) => {
-    const cols = Math.ceil(Math.sqrt(nbSkills));
+    const cols = Math.ceil(nbSkills / 2);
     const rows = Math.ceil(nbSkills / cols);
 
     const cellWidth = containerWidth / cols;
@@ -277,7 +277,7 @@ export const animationSkills = () => {
             visibility: "visible",
             top: posY,
             left: posX,
-            duration: index * 0.05 + 0.2,
+            duration: index * 0.02 + 0.2,
             ease: "power1.inOut",
             delay: index * 0.01,
             clearProps: "scale",
