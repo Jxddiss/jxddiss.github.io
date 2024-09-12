@@ -782,7 +782,8 @@ section:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.9);
   font-size: var(--normal-font-size);
   padding: 0.5em;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #more-skills[open],
@@ -833,6 +834,24 @@ section:nth-child(even) {
 
 .ls-result {
   opacity: 0;
+}
+
+.cat-result-more-skills {
+  display: none;
+  min-height: 80%;
+}
+
+.skill-terminal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vmin;
+  height: 100%;
+}
+
+.skill-terminal pre {
+  font-size: 6px;
+  font-family: monospace;
+  color: var(--accent-color);
 }
 
 input.command {
