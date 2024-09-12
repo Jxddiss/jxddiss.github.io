@@ -542,7 +542,7 @@ section:nth-child(even) {
 
 .ligne-temporel {
   width: 100%;
-  padding-bottom: 1.5em;
+  padding-bottom: 2.375vh;
   height: 15%;
 }
 
@@ -562,15 +562,17 @@ section:nth-child(even) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 80px;
-  gap: 5px;
+  width: min(3.125vw, 60px);
+  height: min(4.17vw, 80px);
+  gap: min(0.25vw, 5px);
   font-size: var(--normal-font-size);
 }
 
 .date-circle {
-  width: 40px;
-  height: 40px;
+  width: min(2.083vw, 40px);
+  height: min(2.083vw, 40px);
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50%;
   border: 3px solid var(--accent-color);
   transition: background 0.2s ease-out;
@@ -593,9 +595,9 @@ section:nth-child(even) {
   height: 3px;
   background: rgba(var(--accent-color-rgb), 0.2);
   position: absolute;
-  bottom: 20px;
+  bottom: 25%;
   left: 50px;
-  right: -5px;
+  right: -0.26vw;
 }
 
 .date .date-line-overlay {
@@ -630,6 +632,8 @@ section:nth-child(even) {
 .skill {
   height: 7.813vw;
   width: 7.813vw;
+  min-height: 75px;
+  min-width: 65px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -728,8 +732,10 @@ section:nth-child(even) {
   }
 }
 
-.skill i {
+.skill i,
+.skill svg {
   font-size: var(--h1-font-size);
+  height: var(--h1-font-size);
   pointer-events: none;
 }
 
@@ -743,7 +749,7 @@ section:nth-child(even) {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  right: -4.5vw;
+  right: -6vw;
   font-size: 1.667vmax;
   visibility: hidden;
   opacity: 0;
@@ -758,10 +764,9 @@ section:nth-child(even) {
 .progress-bar {
   font-size: 1.25vmax;
   font-weight: 1000;
-  width: 67px;
+  width: 3.49vw;
   outline: 3px solid var(--border-color);
-  padding-left: 3px;
-  padding-right: 3px;
+  padding-inline: 0.156vw;
 }
 
 #more-skills,
@@ -894,9 +899,11 @@ input.command + .typing-indicator {
 }
 
 .img-contact img {
-  border-radius: 100000px;
-  height: 200px;
-  width: 200px;
+  border-radius: 50%;
+  height: 10.417vw;
+  width: 10.417vw;
+  min-width: 100px;
+  min-height: 100px;
   object-fit: cover;
   border: 2px solid var(--accent-color);
 }

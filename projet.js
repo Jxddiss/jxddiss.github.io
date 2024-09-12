@@ -512,7 +512,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
     for (let i = dateLineOverlays.length - 1; i >= 0; i--) {
       if (i >= index) {
         gsap.to(dateLineOverlays[i], {
-          left: "110%",
+          left: "120%",
           duration: 0.1,
           ease: "power2.in",
         });

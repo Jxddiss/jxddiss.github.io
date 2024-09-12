@@ -141,7 +141,7 @@ export const animationSkills = () => {
   const tl = gsap.timeline();
 
   const generatePosition = (nbSkills, index) => {
-    const cols = Math.ceil(nbSkills / 2);
+    const cols = Math.ceil(nbSkills / Math.sqrt(nbSkills));
     const rows = Math.ceil(nbSkills / cols);
 
     const cellWidth = containerWidth / cols;
