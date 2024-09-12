@@ -2,7 +2,7 @@ import { AsciiMorph } from "./lib/asciiMorph.min.js";
 
 const asciiArtContainer = document.querySelector(".ascii-art-container");
 AsciiMorph(asciiArtContainer, {
-  x: 45,
+  x: 100,
   y: 15,
 });
 // source : https://www.asciiart.eu/

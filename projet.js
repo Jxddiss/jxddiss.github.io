@@ -265,17 +265,18 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
         }
       );
       animateOneProject(projects[currentIndex], currentIndex);
-      if (getScrollAnimShouldPlay()) {
-        setTimeout(() => {
-          gsap.to(window, {
-            scrollTo: {
-              y: "#projets",
-              offsetY: 45,
-            },
-            ease: "power1.inOut",
-          });
-        }, 10);
-      }
+      // Pose problème
+      // if (getScrollAnimShouldPlay()) {
+      //   setTimeout(() => {
+      //     gsap.to(window, {
+      //       scrollTo: {
+      //         y: "#projets",
+      //         offsetY: 45,
+      //       },
+      //       ease: "power1.inOut",
+      //     });
+      //   }, 10);
+      // }
     },
     onLeaveBack: () => {
       resetOneProject(projects[currentIndex], currentIndex);
