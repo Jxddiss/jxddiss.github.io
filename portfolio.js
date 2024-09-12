@@ -2,6 +2,7 @@ import { animateHero, animationMatrix, animationSkills } from "./animation.js";
 import { initializeAllAnimationPlus3D } from "./computer.js";
 import { projectAnimation } from "./projet.js";
 import { terminalMoreSkills } from "./terminal.js";
+import { initializeAndAnimate3DAbout } from "./about.js";
 
 gsap.registerPlugin(
   Flip,
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animationSkills();
   terminalMoreSkills();
   projectAnimation();
+  initializeAndAnimate3DAbout();
 
   btnNavList.forEach((btnNav) => {
     btnNav.addEventListener("click", () => {

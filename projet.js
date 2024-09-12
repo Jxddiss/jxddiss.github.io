@@ -266,12 +266,15 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       );
       animateOneProject(projects[currentIndex], currentIndex);
       if (getScrollAnimShouldPlay()) {
-        gsap.to(window, {
-          scrollTo: {
-            y: "#projets",
-            offsetY: 45,
-          },
-        });
+        setTimeout(() => {
+          gsap.to(window, {
+            scrollTo: {
+              y: "#projets",
+              offsetY: 45,
+            },
+            ease: "power1.inOut",
+          });
+        }, 10);
       }
     },
     onLeaveBack: () => {
@@ -371,8 +374,8 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       if (i >= index) {
         gsap.to(dateLineOverlays[i], {
           left: "50px",
-          duration: 0.5,
-          ease: "power1.inOut",
+          duration: 0.1,
+          ease: "power2.in",
         });
       }
     }
@@ -465,6 +468,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
           text: {
             value: encodedDescription,
           },
+          duration: 0.1,
         },
         0
       )
@@ -474,6 +478,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
           text: {
             value: encodedName,
           },
+          duration: 0.1,
         },
         0
       )
@@ -481,6 +486,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
         mediaHolder,
         {
           opacity: 0,
+          duration: 0.1,
         },
         0
       )
@@ -494,6 +500,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
           opacity: 0,
           width: 0,
           zIndex: 3,
+          duration: 0.1,
           onComplete: () => {
             gsap.set(descriptionElementParent, { overflowY: "hidden" });
           },
@@ -504,9 +511,9 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
     for (let i = dateLineOverlays.length - 1; i >= 0; i--) {
       if (i >= index) {
         gsap.to(dateLineOverlays[i], {
-          left: "120%",
-          duration: 0.2,
-          ease: "power1.inOut",
+          left: "110%",
+          duration: 0.1,
+          ease: "power2.in",
         });
       }
     }

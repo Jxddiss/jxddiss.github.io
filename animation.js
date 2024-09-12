@@ -252,6 +252,10 @@ export const animationSkills = () => {
     skill.addEventListener("mouseout", () => tlEnter.reverse());
   };
 
+  skillsList.forEach((skill) => {
+    addTextAnimEvent(skill);
+  });
+
   ScrollTrigger.create({
     trigger: ".skills-section",
     start: "top center",
@@ -277,13 +281,6 @@ export const animationSkills = () => {
             ease: "power1.inOut",
             delay: index * 0.01,
             clearProps: "scale",
-            onComplete: () => {
-              if (index == skillsList.length - 1) {
-                skillsList.forEach((skill) => {
-                  addTextAnimEvent(skill);
-                });
-              }
-            },
           }
         );
       });
