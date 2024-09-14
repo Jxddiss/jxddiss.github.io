@@ -29,7 +29,7 @@ export function initializeAllAnimationPlus3D() {
 
   const loader = new GLTFLoader();
   loader.load(
-    "assets/model/retro_futuristic_computer/scene.gltf",
+    "assets/model/retro_futuristic_computer/retrofuturistic_computer.glb",
     function (gltf) {
       const model = gltf.scene;
       model.rotation.y = Math.PI;

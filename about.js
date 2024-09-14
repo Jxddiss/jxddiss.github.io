@@ -8,11 +8,11 @@ export const initializeAndAnimate3DAbout = () => {
 
   const introTexts = document.querySelectorAll(".intro-text");
   const paragraphOne =
-    "Passionnée par la technologie depuis tout jeune, la programmation est pour moi un " +
+    "Passionné par la technologie depuis tout jeune, la programmation est pour moi un " +
     "moyen d'exprimmer ma créativité, autant du côté frontend que backend";
   const paragraphTwo =
-    " Après être passée par des études en sciences humeiane. J'ai finis par suivre ma passion et donc aujourd'hui," +
-    "<br><br>je suis présentement en train de terminer un DEC technique en développement web et mobile.";
+    " Après être passée par des études en sciences humaine, j'ai finis par suivre ma passion" +
+    "<br><br>Donc aujourd'hui, je suis en train de terminer un DEC technique en développement web et mobile.";
   gsap.set(introTexts[0], {
     text: {
       value: "",
@@ -69,18 +69,18 @@ export const initializeAndAnimate3DAbout = () => {
       z: 220,
     },
     25,
-    1
+    -1
   );
 
   initializeModelInAbout(
-    "assets/model/lowpoly_cd/scene.gltf",
+    "assets/model/lowpoly_cd/lowpoly_cd.glb",
     cdCanvasElement,
     {
-      x: -6,
-      y: -30,
-      z: 20,
+      x: -30,
+      y: -7.4,
+      z: 370,
     },
-    100,
+    25,
     1
   );
 };
@@ -121,26 +121,28 @@ const initializeModelInAbout = (
         cameraPositions.z
       );
       camera.lookAt(0, 0, 0);
-      //   const gui = new dat.GUI();
-      //   gui.add(camera.position, "x", -1000, 1000, 1).name("Camera position X");
-      //   gui.add(camera.position, "y", -1000, 1000, 1).name("Camera position Y");
-      //   gui.add(camera.position, "z", -1000, 1000, 1).name("Camera position Z");
-      //   gui.add(light.position, "x", -1000, 1000, 1).name("Light position X");
-      //   gui.add(light.position, "y", -1000, 1000, 1).name("Light position Y");
-      //   gui.add(light.position, "z", -1000, 1000, 1).name("Light position Z");
-      //   gui.add(model.rotation, "y", 0, Math.PI * 2, 0.01).name("Rotate Y model");
-      //   gui.add(model.rotation, "x", 0, Math.PI * 2, 0.01).name("Rotate X model");
-      //   gui.add(model.rotation, "z", 0, Math.PI * 2, 0.01).name("Rotate Z model");
+      // const gui = new dat.GUI();
+
+      // gui.add(camera.position, "y", -30, 30).name("camera Y model");
+      // gui.add(camera.position, "x", -30, 30).name("camera X model");
+      // gui.add(camera.position, "z", -30, 30).name("camera Z model");
 
       let oldX = 0;
       let oldY = 0;
-      window.addEventListener("mousemove", (event) => {
+      container.addEventListener("mousemove", (event) => {
         let changeX = event.clientX - oldX;
         let changeY = event.clientY - oldY;
-        camera.position.x -= (changeX / ratioModifCamera) * direction;
-        camera.position.y += (changeY / ratioModifCamera) * direction;
-        oldX = event.clientX;
-        oldY = event.clientY;
+
+        gsap.to(model.position, {
+          x: camera.position.x - (changeX / ratioModifCamera) * direction,
+          y: camera.position.y + (changeY / ratioModifCamera) * direction,
+          duration: 0.1,
+          ease: "power1.inOut",
+          onComplete: () => {
+            oldX = event.clientX;
+            oldY = event.clientY;
+          },
+        });
       });
       renderer.render(scene, camera);
 

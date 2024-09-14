@@ -1,22 +1,97 @@
 import { AsciiMorph2 } from "./lib/asciiMorph.min.js";
 
+const dirHomeInnerHtmlTemplates = [
+  {
+    name: "home",
+    template: `
+  <ul>
+      <li>/more-skills</li>
+      <li>/super-awesome-projects</li>
+      <li>cat.png</li>
+      <li>/pictures</li>
+      <li>/documents</li>
+      <li>/other</li>
+      <li>definitely_not_a_virus.sh</li>
+  </ul>
+  `,
+    previousLocation: "~",
+  },
+  {
+    name: "more-skills",
+    template: `
+  <ul>
+      <li>\\..</li>
+      <li>skills.txt</li>
+  </ul>
+  `,
+    previousLocation: "home",
+  },
+];
+
+const basicLineInnerHtmlTemplate = `
+<span class="username">nick@portfolio</span>
+<span class="location">~/more-skills</span>
+<span class="user-type">$</span>
+<span class="command" data-command="cat skills.txt"></span>
+<span class="typing-indicator" style="display: none;">|</span>
+`;
+
+const addedLines = [];
+
 export const terminalMoreSkills = () => {
   const plusBouton = document.getElementById("plus");
   const plusSkillsDialogue = document.getElementById("more-skills");
-  const linesElements = document.querySelectorAll(".line");
-  const moreSkillContainer = document.querySelector(".cat-result-more-skills");
+  let linesElementsDomElements = document.querySelectorAll(".line");
+  let linesElements = Array.from(linesElementsDomElements);
+
+  let moreSkillContainer = document.querySelector(".cat-result-more-skills");
+  const inputLine = document.getElementById("input-line");
 
   let tl = gsap.timeline();
   let lineTimeline = gsap.timeline();
   let stopAscii = false;
   let asciiPlaying = false;
+  let cdAnimPlaying = false;
+
+  inputLine.querySelector("input").addEventListener("keydown", (event) => {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
+    if (event.key === "Enter") {
+      const command = event.target.value;
+      const index = linesElements.length - 2;
+      if (command !== "clear") {
+        const newLine = document.createElement("div");
+        newLine.classList.add("line");
+        gsap.set(newLine, { display: "block", opacity: 1 });
+        newLine.innerHTML = basicLineInnerHtmlTemplate;
+        newLine.querySelector(".command").dataset.command = command;
+        newLine.querySelector(".command").textContent = command;
+        newLine.dataset.location = inputLine.dataset.location;
+        newLine.querySelector(".location").innerText =
+          inputLine.querySelector(".location").innerText;
+        plusSkillsDialogue.insertBefore(newLine, inputLine);
+        addedLines.push(newLine);
+        const lastLine = linesElements.splice(linesElements.length - 1, 1);
+        linesElements.push(newLine);
+        linesElements.push(lastLine);
+      }
+      event.target.value = "";
+      doCommand(command, index, inputLine, false);
+    }
+  });
 
   const closeHandler = (event) => {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
     if (!plusSkillsDialogue.contains(event.target)) {
       if (!plusSkillsDialogue.open) {
         return;
       }
       tl.reverse(0);
+      addedLines.forEach((line) => {
+        line.remove();
+        linesElements.splice(linesElements.indexOf(line), 1);
+      });
       setTimeout(() => {
         plusSkillsDialogue.close();
         closeLines();
@@ -27,6 +102,9 @@ export const terminalMoreSkills = () => {
             value: "|",
           },
         });
+        inputLine.dataset.location = "more-skills";
+        inputLine.querySelector(".location").innerHTML = "~/more-skills";
+        cdAnimPlaying = true;
       }, 500);
       document.removeEventListener("click", closeHandler);
     }
@@ -59,6 +137,8 @@ export const terminalMoreSkills = () => {
   });
 
   function cliMoreSkillAnimation() {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
     linesElements.forEach((line, index) => {
       let commandSpan = line.children[3];
       let command = commandSpan.dataset.command;
@@ -75,13 +155,20 @@ export const terminalMoreSkills = () => {
           },
           duration: command.length * 0.2,
           onComplete: () => {
-            doCommand(command, index, line);
+            if (index !== linesElements.length - 1) {
+              if (command.includes("cd")) {
+                cdAnimPlaying = true;
+              }
+              doCommand(command, index, line);
+            }
           },
         });
     });
   }
 
   function closeLines() {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
     lineTimeline.kill();
     lineTimeline = gsap.timeline();
     stopAscii = !stopAscii;
@@ -105,26 +192,37 @@ export const terminalMoreSkills = () => {
           duration: 0,
         });
     });
-    gsap.to(".ls-result", {
+    gsap.to(".ls-result, .not-found", {
       display: "none",
       opacity: 0,
       duration: 0,
     });
   }
 
-  function doCommand(commandeComplete, index, line) {
+  function doCommand(commandeComplete, index, line, anim = true) {
     let command = commandeComplete.split(" ")[0];
+    let param;
+    if (commandeComplete.split(" ")[1]) {
+      param = commandeComplete.split(" ")[1];
+    }
     switch (command) {
       case "clear":
         clear(index);
         break;
       case "ls":
-        ls();
+        ls(anim);
         break;
       case "cat":
-        doCat(commandeComplete);
+        doCat(param);
+        break;
+      case "cd":
+        if (!cdAnimPlaying) {
+          doCd(param);
+        }
+        cdAnimPlaying = false;
         break;
       default:
+        doNotFound(command);
         break;
     }
     gsap.to(line.children[4], {
@@ -136,15 +234,18 @@ export const terminalMoreSkills = () => {
   }
 
   function clear(index) {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
     linesElements.forEach((line, ind) => {
       if (ind <= index) {
         line.style.display = "none";
       }
     });
-
-    gsap.to(".ls-result", {
+    gsap.set(moreSkillContainer, {
       display: "none",
-      duration: 0,
+    });
+    gsap.set(".ls-result, .not-found", {
+      display: "none",
     });
 
     if (asciiPlaying) {
@@ -152,25 +253,86 @@ export const terminalMoreSkills = () => {
     }
   }
 
-  function ls() {
-    gsap.to(".ls-result", {
-      display: "block",
-      opacity: 1,
-      duration: 0,
-    });
-    lineTimeline.to({}, { duration: 1 });
+  function ls(anim) {
+    if (anim) {
+      gsap.to(".ls-result", {
+        display: "block",
+        opacity: 1,
+        duration: 0,
+      });
+      lineTimeline.to({}, { duration: 1 });
+    } else {
+      const lsResult = document.createElement("div");
+      lsResult.classList.add("ls-result");
+      gsap.set(lsResult, { display: "block", opacity: 1 });
+      const folder = dirHomeInnerHtmlTemplates.filter((item) => {
+        return item.name === inputLine.dataset.location;
+      })[0];
+      lsResult.innerHTML = folder.template;
+      plusSkillsDialogue.insertBefore(lsResult, inputLine);
+      addedLines.push(lsResult);
+    }
   }
 
-  function doCat(command) {
-    const param = command.split(" ")[1];
-    console.log(param);
-    switch (param) {
-      case "skills.txt":
-        stopAscii = false;
-        catMoreSkills();
-        break;
-      default:
-        break;
+  function doCat(param) {
+    if (param) {
+      switch (param) {
+        case "skills.txt":
+          stopAscii = false;
+          catMoreSkills();
+          break;
+        default:
+          doNotFound("cat", param);
+          break;
+      }
+    }
+  }
+
+  function doCd(param) {
+    if (param) {
+      let newLocation = param;
+      switch (param) {
+        case "..":
+          newLocation = dirHomeInnerHtmlTemplates.filter((item) => {
+            return item.name === inputLine.dataset.location;
+          })[0];
+          if (newLocation) {
+            inputLine.dataset.location = newLocation.previousLocation;
+            if (newLocation.previousLocation === "home") {
+              inputLine.querySelector(".location").innerText = "~";
+            } else {
+              inputLine.querySelector(".location").innerText +=
+                "/" + newLocation.name;
+            }
+          }
+          break;
+        case "./more-skills":
+          inputLine.dataset.location = "more-skills";
+          inputLine.querySelector(".location").innerText += "/more-skills";
+          break;
+        default:
+          doNotFound("cd", param);
+          break;
+      }
+    }
+  }
+
+  function doNotFound(command, param) {
+    const lsResult = document.createElement("div");
+    lsResult.classList.add("not-found");
+    gsap.set(lsResult, { display: "block", opacity: 1 });
+    if (command === "cat") {
+      lsResult.innerHTML = `cat ${param} No such file or directory`;
+      plusSkillsDialogue.insertBefore(lsResult, inputLine);
+      addedLines.push(lsResult);
+    } else if (command === "cd") {
+      lsResult.innerHTML = `${param} No such file or directory`;
+      plusSkillsDialogue.insertBefore(lsResult, inputLine);
+      addedLines.push(lsResult);
+    } else if (command !== "") {
+      lsResult.innerHTML = `command ${command} not found try 'help' for more information`;
+      plusSkillsDialogue.insertBefore(lsResult, inputLine);
+      addedLines.push(lsResult);
     }
   }
 
@@ -179,8 +341,11 @@ export const terminalMoreSkills = () => {
     asciiPlaying = true;
     const asciiSkillContainer = document.getElementById("skill-logo-ascii");
     const skillNameAscii = document.getElementById("skill-name-ascii");
+    const newMoreskillsContainer =
+      plusSkillsDialogue.removeChild(moreSkillContainer);
+    plusSkillsDialogue.insertBefore(newMoreskillsContainer, inputLine);
 
-    gsap.set(moreSkillContainer, {
+    gsap.set(newMoreskillsContainer, {
       display: "block",
     });
 
@@ -556,6 +721,8 @@ export const terminalMoreSkills = () => {
       });
     }, 500);
 
+    moreSkillContainer = newMoreskillsContainer;
+
     intervalRender = setInterval(function () {
       gsap.to(skillNameAscii, {
         text: {
@@ -570,7 +737,7 @@ export const terminalMoreSkills = () => {
 
       if (stopAscii) {
         clearInterval(intervalRender);
-        gsap.set(moreSkillContainer, {
+        gsap.set(newMoreskillsContainer, {
           display: "none",
         });
         asciiPlaying = false;
