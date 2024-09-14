@@ -1,5 +1,3 @@
-import { getScrollAnimShouldPlay } from "./portfolio.js";
-
 const projectObjList = [
   {
     name: "Live Messenger",

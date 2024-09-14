@@ -125,8 +125,8 @@ export const terminalMoreSkills = () => {
     plusSkillsDialogue.show();
 
     tl.to(plusSkillsDialogue, {
-      height: "70vh",
-      width: "70vw",
+      height: "clamp(600px, 70vh, 70vh)",
+      width: "clamp(350px, 70vw, 70vw)",
       duration: 0.5,
       ease: "bounce.out",
     });

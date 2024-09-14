@@ -14,23 +14,28 @@ gsap.registerPlugin(
   ScrollToPlugin
 );
 
-let scrollAnimShouldPlay = true;
-export function getScrollAnimShouldPlay() {
-  return scrollAnimShouldPlay;
-}
-
-function setScrollanimationShouldPlay(value) {
-  scrollAnimShouldPlay = value;
-}
-
 const logo = document.querySelector(".logo");
+const showNavBtn = document.getElementById("show-nav");
+const header = document.querySelector("header");
+
+function openNav() {
+  header.classList.toggle("open");
+  if (header.classList.contains("open")) {
+    document.body.classList.add("no-scroll");
+    showNavBtn.innerHTML = `<i class="bi bi-x"></i>`;
+  } else {
+    document.body.classList.remove("no-scroll");
+    showNavBtn.innerHTML = `<i class="bi bi-list"></i>`;
+  }
+}
+
 setupMutationObserver();
 
 function addSvgClickListener() {
   let logoSvg = logo.contentDocument.querySelector("svg");
   logoSvg.addEventListener("click", () => {
+    openNav();
     document.body.classList.remove("no-scroll");
-    setScrollanimationShouldPlay(false);
     gsap.to(window, {
       scrollTo: {
         y: 0,
@@ -61,9 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPlayDemoProject = document.querySelectorAll(".play-demo");
   const playVideoDialog = document.getElementById("video-dialog");
   const vidDialogTimeline = gsap.timeline();
+  const allShowMoreBtns = document.querySelectorAll(".show-more");
+
   vidDialogTimeline.to(playVideoDialog, {
-    height: "auto",
-    width: "auto",
+    height: "clamp(600px, 70vh, 70vh)",
+    width: "clamp(350px, 70vw, 70vw)",
     duration: 0.5,
     ease: "bounce.out",
   });
@@ -82,17 +89,19 @@ document.addEventListener("DOMContentLoaded", () => {
   projectAnimation();
   initializeAndAnimate3DAbout();
 
+  showNavBtn.addEventListener("click", () => {
+    openNav();
+  });
+
   btnNavList.forEach((btnNav) => {
     btnNav.addEventListener("click", () => {
+      openNav();
       document.body.classList.remove("no-scroll");
       let goTo = btnNav.dataset.go;
       let offsetY = 10;
 
       if (goTo.includes("projets")) {
         offsetY = 45;
-        setScrollanimationShouldPlay(true);
-      } else {
-        setScrollanimationShouldPlay(false);
       }
       gsap.to(window, {
         scrollTo: {
@@ -101,9 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         duration: 1,
         ease: "power2",
-        onComplete: () => {
-          setScrollanimationShouldPlay(true);
-        },
       });
     });
   });
@@ -148,6 +154,21 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         document.addEventListener("click", closeVidHandler);
       }, 100);
+    });
+  });
+
+  allShowMoreBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const parent = btn.parentElement;
+      const description = parent.querySelector(".description");
+      const mediasHolder = parent.querySelector(".medias-holder");
+      mediasHolder.classList.toggle("open");
+      description.classList.toggle("open");
+      if (description.classList.contains("open")) {
+        btn.innerHTML = `<i class="bi bi-x"></i>`;
+      } else {
+        btn.innerHTML = `<i class="bi bi-plus"></i>`;
+      }
     });
   });
 });
