@@ -81,34 +81,38 @@ export const terminalMoreSkills = () => {
   });
 
   const closeHandler = (event) => {
-    linesElementsDomElements = document.querySelectorAll(".line");
-    linesElements = Array.from(linesElementsDomElements);
     if (!plusSkillsDialogue.contains(event.target)) {
-      if (!plusSkillsDialogue.open) {
-        return;
-      }
-      tl.reverse(0);
-      addedLines.forEach((line) => {
-        line.remove();
-        linesElements.splice(linesElements.indexOf(line), 1);
-      });
-      setTimeout(() => {
-        plusSkillsDialogue.close();
-        closeLines();
-        lineTimeline.kill();
-        lineTimeline = gsap.timeline();
-        gsap.set(".typing-indicator", {
-          text: {
-            value: "|",
-          },
-        });
-        inputLine.dataset.location = "more-skills";
-        inputLine.querySelector(".location").innerHTML = "~/more-skills";
-        cdAnimPlaying = true;
-      }, 500);
-      document.removeEventListener("click", closeHandler);
+      closeDialogue();
     }
   };
+
+  function closeDialogue() {
+    linesElementsDomElements = document.querySelectorAll(".line");
+    linesElements = Array.from(linesElementsDomElements);
+    if (!plusSkillsDialogue.open) {
+      return;
+    }
+    tl.reverse(0);
+    addedLines.forEach((line) => {
+      line.remove();
+      linesElements.splice(linesElements.indexOf(line), 1);
+    });
+    setTimeout(() => {
+      plusSkillsDialogue.close();
+      closeLines();
+      lineTimeline.kill();
+      lineTimeline = gsap.timeline();
+      gsap.set(".typing-indicator", {
+        text: {
+          value: "|",
+        },
+      });
+      inputLine.dataset.location = "more-skills";
+      inputLine.querySelector(".location").innerHTML = "~/more-skills";
+      cdAnimPlaying = true;
+    }, 500);
+    document.removeEventListener("click", closeHandler);
+  }
 
   plusBouton.addEventListener("click", () => {
     if (plusSkillsDialogue.open) {
@@ -221,6 +225,9 @@ export const terminalMoreSkills = () => {
         }
         cdAnimPlaying = false;
         break;
+      case "exit":
+        closeDialogue();
+        break;
       default:
         doNotFound(command);
         break;
@@ -307,8 +314,10 @@ export const terminalMoreSkills = () => {
           }
           break;
         case "./more-skills":
-          inputLine.dataset.location = "more-skills";
-          inputLine.querySelector(".location").innerText += "/more-skills";
+          if (inputLine.dataset.location !== "more-skills") {
+            inputLine.dataset.location = "more-skills";
+            inputLine.querySelector(".location").innerText += "/more-skills";
+          }
           break;
         default:
           doNotFound("cd", param);
