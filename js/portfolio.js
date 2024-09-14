@@ -4,15 +4,7 @@ import { projectAnimation } from "./projet.js";
 import { terminalMoreSkills } from "./terminal.js";
 import { initializeAndAnimate3DAbout } from "./about.js";
 
-gsap.registerPlugin(
-  Flip,
-  ScrollTrigger,
-  Observer,
-  Draggable,
-  MotionPathPlugin,
-  TextPlugin,
-  ScrollToPlugin
-);
+gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
 
 const logo = document.querySelector(".logo");
 const showNavBtn = document.getElementById("show-nav");
@@ -67,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const playVideoDialog = document.getElementById("video-dialog");
   const vidDialogTimeline = gsap.timeline();
   const allShowMoreBtns = document.querySelectorAll(".show-more");
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
 
   vidDialogTimeline.to(playVideoDialog, {
     height: "clamp(600px, 70vh, 70vh)",
@@ -87,7 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
   animationSkills();
   terminalMoreSkills();
   projectAnimation();
-  initializeAndAnimate3DAbout();
+
+  if (mediaQuery.matches) {
+    initializeAndAnimate3DAbout();
+  }
 
   showNavBtn.addEventListener("click", () => {
     openNav();

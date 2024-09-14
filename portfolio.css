@@ -101,8 +101,8 @@ header {
 }
 
 .logo {
-  width: clamp(150px, 6.25vw, 6.25vw);
-  height: clamp(150px, 6.25vw, 6.25vw);
+  width: clamp(100px, 6.25vw, 6.25vw);
+  height: clamp(100px, 6.25vw, 6.25vw);
   margin-right: 0.521vw;
   object-fit: contain;
   filter: sepia(0.5) hue-rotate(90deg);
@@ -184,6 +184,10 @@ nav ul a:hover::after {
 }
 
 @media screen and (max-width: 768px) {
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
   header {
     height: 0;
     width: 0;
