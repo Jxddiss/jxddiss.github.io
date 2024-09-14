@@ -3,7 +3,7 @@
   --text-color: #f2f7f1;
   --secondary-text-color: #ccc;
   --border-color: #e7ebe6;
-  --accent-color: rgb(33, 223, 33);
+  --accent-color: rgb(100, 33, 223);
   --accent-color-rgb: 33, 223, 33;
   --shadow-color: hsla(120, 75%, 50%, 0.671);
   --h1-font-size: clamp(2.5rem, 3.33vmax, 3.33vmax);
