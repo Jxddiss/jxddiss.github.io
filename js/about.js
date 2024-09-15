@@ -9,9 +9,9 @@ export const initializeAndAnimate3DAbout = () => {
   const introTexts = document.querySelectorAll(".intro-text");
   const paragraphOne =
     "Passionné par la technologie depuis tout jeune, la programmation est pour moi un " +
-    "moyen d'exprimmer ma créativité, autant du côté frontend que backend";
+    "moyen d'exprimer ma créativité, autant du côté frontend que backend";
   const paragraphTwo =
-    " Après être passée par des études en sciences humaine, j'ai finis par suivre ma passion" +
+    " Après être passé par des études en sciences humaines, j'ai fini par suivre ma passion" +
     "<br><br>Donc aujourd'hui, je suis en train de terminer un DEC technique en développement web et mobile.";
   gsap.set(introTexts[0], {
     text: {
