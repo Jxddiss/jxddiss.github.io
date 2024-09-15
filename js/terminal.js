@@ -377,7 +377,7 @@ export const terminalMoreSkills = () => {
     const helpResult = document.createElement("div");
     helpResult.classList.add("ls-result");
     gsap.set(helpResult, { display: "block", opacity: 1 });
-    helpResult.innerText = "Available commands : ls, cat, cd, help, exit";
+    helpResult.innerText = "Commandes disponibles : ls, cat, cd, help, exit";
     plusSkillsDialogue.insertBefore(helpResult, inputLine);
     addedLines.push(helpResult);
   }
@@ -461,15 +461,15 @@ export const terminalMoreSkills = () => {
     lsResult.classList.add("not-found");
     gsap.set(lsResult, { display: "block", opacity: 1 });
     if (command === "cat") {
-      lsResult.innerHTML = `cat ${param} No such file or directory`;
+      lsResult.innerHTML = `cat ${param} Fichier non trouvé`;
       plusSkillsDialogue.insertBefore(lsResult, inputLine);
       addedLines.push(lsResult);
     } else if (command === "cd") {
-      lsResult.innerHTML = `${param} No such file or directory`;
+      lsResult.innerHTML = `${param} Dossier non trouvé`;
       plusSkillsDialogue.insertBefore(lsResult, inputLine);
       addedLines.push(lsResult);
     } else if (command !== "") {
-      lsResult.innerHTML = `command ${command} not found try 'help' for more information`;
+      lsResult.innerHTML = `commande ${command} non trouvé tentez 'help' pour plus d'informations`;
       plusSkillsDialogue.insertBefore(lsResult, inputLine);
       addedLines.push(lsResult);
     }

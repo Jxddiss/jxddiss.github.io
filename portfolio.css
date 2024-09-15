@@ -1025,6 +1025,7 @@ input.command {
   color: inherit;
   padding: 0;
   animation: textShadow 1.5s infinite;
+  width: 50%;
 }
 
 @media screen and (max-width: 768px) {
