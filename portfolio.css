@@ -745,7 +745,7 @@ section:nth-child(even) {
   .medias-holder img {
     width: 45vw;
     height: auto;
-    max-height: 30vh;
+    max-height: 20vh;
   }
 
   .medias-holder.open {
