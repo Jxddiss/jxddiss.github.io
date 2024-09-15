@@ -5,6 +5,7 @@ const dirHomeInnerHtmlTemplates = [
     name: "home",
     template: `
   <ul>
+      <li>..</li>
       <li>/more-skills</li>
       <li>/super-awesome-projects</li>
       <li>cat.png</li>
@@ -14,17 +15,103 @@ const dirHomeInnerHtmlTemplates = [
       <li>definitely_not_a_virus.sh</li>
   </ul>
   `,
-    previousLocation: "~",
+    previousLocation: "home",
   },
   {
     name: "more-skills",
     template: `
   <ul>
-      <li>\\..</li>
+      <li>..</li>
       <li>skills.txt</li>
   </ul>
   `,
     previousLocation: "home",
+  },
+  {
+    name: "super-awesome-projects",
+    template: `
+    <ul>
+      <li>..</li>
+      <li>UniBank</li>
+      <li>ArtSync</li>
+      <li>Msn_Live_Messenger</li>
+  </ul>
+    `,
+    previousLocation: "home",
+  },
+  {
+    name: "pictures",
+    template: `
+  <ul>
+      <li>..</li>
+      <li>sky.png</li>
+      <li>mountain.png</li>
+      <li>sea.png</li>
+  </ul>
+    `,
+    previousLocation: "home",
+  },
+  {
+    name: "documents",
+    template: `
+    <ul>
+      <li>..</li>
+      <li>secret.txt</li>
+  </ul>
+    `,
+    previousLocation: "home",
+  },
+  {
+    name: "other",
+    template: `
+    <ul>
+      <li>..</li>
+  </ul>
+    `,
+    previousLocation: "home",
+  },
+];
+
+const catResults = [
+  {
+    name: "cat.png",
+    result: "Cant read this file type",
+  },
+  {
+    name: "sky.png",
+    result: "Cant read this file type",
+  },
+  {
+    name: "mountain.png",
+    result: "Cant read this file type",
+  },
+  {
+    name: "sea.png",
+    result: "Cant read this file type",
+  },
+  {
+    name: "definitely_not_a_virus.sh",
+    result: "Uh oh, you have been infected",
+  },
+  {
+    name: "UniBank",
+    result:
+      "<a href='https://github.com/Jxddiss/Projet_guichet_banque' target='_blank'>Allez voir le projet sur github</a>",
+  },
+  {
+    name: "ArtSync",
+    result:
+      "<a href='https://artsync.tech' target='_blank'>Allez visiter le site</a>",
+  },
+  {
+    name: "Msn_Live_Messenger",
+    result:
+      "<a href='https://msn.nicholsonrj.com' target='_blank'>Allez visiter le site</a>",
+  },
+  {
+    name: "secret.txt",
+    result:
+      "😡😡😡 Vous ne devriez pas fouiller ou vous n'avez pas le droit 😡😡😡",
   },
 ];
 
@@ -225,6 +312,9 @@ export const terminalMoreSkills = () => {
         }
         cdAnimPlaying = false;
         break;
+      case "help":
+        doHelp();
+        break;
       case "exit":
         closeDialogue();
         break;
@@ -238,6 +328,8 @@ export const terminalMoreSkills = () => {
       },
       duration: 0,
     });
+
+    plusSkillsDialogue.scrollTop = plusSkillsDialogue.scrollHeight;
   }
 
   function clear(index) {
@@ -281,15 +373,39 @@ export const terminalMoreSkills = () => {
     }
   }
 
+  function doHelp() {
+    const helpResult = document.createElement("div");
+    helpResult.classList.add("ls-result");
+    gsap.set(helpResult, { display: "block", opacity: 1 });
+    helpResult.innerText = "Available commands : ls, cat, cd, help, exit";
+    plusSkillsDialogue.insertBefore(helpResult, inputLine);
+    addedLines.push(helpResult);
+  }
+
   function doCat(param) {
     if (param) {
-      switch (param) {
+      let lowerParam = param.toLowerCase();
+      switch (lowerParam) {
         case "skills.txt":
           stopAscii = false;
           catMoreSkills();
           break;
         default:
-          doNotFound("cat", param);
+          let found = false;
+          catResults.forEach((item) => {
+            if (item.name === param) {
+              const catResult = document.createElement("div");
+              catResult.classList.add("ls-result");
+              gsap.set(catResult, { display: "block", opacity: 1 });
+              catResult.innerHTML = item.result;
+              plusSkillsDialogue.insertBefore(catResult, inputLine);
+              addedLines.push(catResult);
+              found = true;
+            }
+          });
+          if (!found) {
+            doNotFound("cat", param);
+          }
           break;
       }
     }
@@ -297,7 +413,8 @@ export const terminalMoreSkills = () => {
 
   function doCd(param) {
     if (param) {
-      let newLocation = param;
+      let newLocation;
+      let newLocationName = param.split("./").pop();
       switch (param) {
         case "..":
           newLocation = dirHomeInnerHtmlTemplates.filter((item) => {
@@ -313,14 +430,27 @@ export const terminalMoreSkills = () => {
             }
           }
           break;
-        case "./more-skills":
-          if (inputLine.dataset.location !== "more-skills") {
-            inputLine.dataset.location = "more-skills";
-            inputLine.querySelector(".location").innerText += "/more-skills";
-          }
-          break;
         default:
-          doNotFound("cd", param);
+          let found = false;
+          dirHomeInnerHtmlTemplates.forEach((item) => {
+            if (item.name.includes(newLocationName)) {
+              if (inputLine.dataset.location !== newLocationName) {
+                inputLine.dataset.location = newLocationName;
+                if (inputLine.dataset.location === "home") {
+                  newLocationName = "~";
+                  inputLine.querySelector(".location").innerText =
+                    newLocationName;
+                } else {
+                  inputLine.querySelector(".location").innerText +=
+                    "/" + newLocationName;
+                }
+              }
+              found = true;
+            }
+          });
+          if (!found) {
+            doNotFound("cd", param);
+          }
           break;
       }
     }

@@ -511,11 +511,6 @@ section:nth-child(even) {
   }
 }
 
-/* .medias-holder:has(~ .play-demo:hover) ul */
-/* .medias-holder:hover ul {
-  animation-play-state: paused;
-} */
-
 .medias-holder img {
   display: block;
   max-height: 50%;
@@ -747,6 +742,12 @@ section:nth-child(even) {
     transition: width 0.2s ease-out;
   }
 
+  .medias-holder img {
+    width: 45vw;
+    height: auto;
+    max-height: 30vh;
+  }
+
   .medias-holder.open {
     opacity: 1;
     width: 100%;
@@ -905,6 +906,7 @@ section:nth-child(even) {
   position: absolute;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   right: -6vw;
   font-size: 1.667vmax;
@@ -948,6 +950,10 @@ section:nth-child(even) {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#more-skills::-webkit-scrollbar {
+  display: none;
 }
 
 /* ----- terminal ----- */
@@ -1019,6 +1025,23 @@ input.command {
   color: inherit;
   padding: 0;
   animation: textShadow 1.5s infinite;
+}
+
+@media screen and (max-width: 768px) {
+  input.command {
+    display: none;
+  }
+
+  .skill-name {
+    right: 25% !important;
+    bottom: -6vh;
+    font-size: var(--h1-font-size);
+  }
+
+  .skill-name .progress-bar {
+    font-size: var(--normal-font-size);
+    width: 40px;
+  }
 }
 
 input.command + .typing-indicator {
