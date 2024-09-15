@@ -27,6 +27,8 @@ export function initializeAllAnimationPlus3D() {
   backgroundTexture.repeat.set(4, 4);
   scene.background = backgroundTexture;
 
+  let doneLoading = false;
+
   const loader = new GLTFLoader();
   loader.load(
     "assets/model/retro_futuristic_computer/retrofuturistic_computer.glb",
@@ -40,6 +42,11 @@ export function initializeAllAnimationPlus3D() {
         y: model.rotation.y + Math.PI,
         duration: 3,
         ease: "power1.inOut",
+        onComplete: () => {
+          setTimeout(() => {
+            doneLoading = true;
+          }, 1000);
+        },
       });
       animateHero();
       animateCameraAndLight();
@@ -58,6 +65,16 @@ export function initializeAllAnimationPlus3D() {
   });
 
   renderer.render(scene, camera);
+
+  let checkAnimFinis = setInterval(function () {
+    if (doneLoading) {
+      scene.remove(renderer.domElement);
+      renderer.domElement.remove();
+      computerDomContainer.innerHTML = "";
+      renderer.dispose();
+      clearInterval(checkAnimFinis);
+    }
+  }, 100);
 
   function animateCameraAndLight() {
     gsap.fromTo(

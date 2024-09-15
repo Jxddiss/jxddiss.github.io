@@ -245,43 +245,76 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
   const dateLineOverlays = document.querySelectorAll(".date-line-overlay");
   let currentIndex = 0;
   let nextIndex = 1;
+  const mediaQuery = window.matchMedia("(min-width: 768px)");
+  let debounce = false;
+  let debouceTimeout;
+  const descScrollHandler = () => {
+    if (!debounce) {
+      if (currentIndex < 0) {
+        projects[currentIndex - 1]
+          .querySelector(".description")
+          .removeEventListener(descScrollHandler);
+      }
+      const descriptionElementParent =
+        projects[currentIndex].querySelector(".description");
+      const scrollTop = descriptionElementParent.scrollTop;
+      const scrollHeight = descriptionElementParent.scrollHeight;
+      const offsetHeight = descriptionElementParent.offsetHeight;
 
-  ScrollTrigger.create({
-    trigger: "#projets",
-    start: "top +=300",
-    // markers: true,
-    onEnter: () => {
-      gsap.fromTo(
-        ".projects-container",
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.2,
-          ease: "power1.inOut",
-        }
-      );
-      animateOneProject(projects[currentIndex], currentIndex);
-      // Pose problème
-      // if (getScrollAnimShouldPlay()) {
-      //   setTimeout(() => {
-      //     gsap.to(window, {
-      //       scrollTo: {
-      //         y: "#projets",
-      //         offsetY: 45,
-      //       },
-      //       ease: "power1.inOut",
-      //     });
-      //   }, 10);
-      // }
-    },
-    onLeaveBack: () => {
-      resetOneProject(projects[currentIndex], currentIndex);
-    },
-  });
+      if (offsetHeight + scrollTop >= scrollHeight - 5) {
+        debounce = true;
+        resetOneProject(projects[currentIndex], currentIndex);
+        animateOneProject(projects[nextIndex], nextIndex);
+      }
+    } else {
+      if (debouceTimeout) {
+        clearTimeout(debouceTimeout);
+      }
+      debouceTimeout = setTimeout(() => {
+        debounce = false;
+      }, 1000);
+    }
+  };
 
-  const animateOneProject = (project, index) => {
+  if (mediaQuery.matches) {
+    ScrollTrigger.create({
+      trigger: "#projets",
+      start: "top +=300",
+      // markers: true,
+      onEnter: () => {
+        gsap.fromTo(
+          ".projects-container",
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.2,
+            ease: "power1.inOut",
+          }
+        );
+        animateOneProject(projects[currentIndex], currentIndex);
+      },
+      onLeaveBack: () => {
+        resetOneProject(projects[currentIndex], currentIndex);
+      },
+    });
+  } else {
+    gsap.fromTo(
+      ".projects-container",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power1.inOut",
+      }
+    );
+    animateOneProject(projects[currentIndex], currentIndex);
+  }
+
+  function animateOneProject(project, index) {
     const {
       name,
       description,
@@ -385,7 +418,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       nextIndex = 0;
     }
     descriptionElementParent.addEventListener("scroll", descScrollHandler);
-  };
+  }
 
   function animateFonctionnalites(
     fonctionalitesElement,
@@ -411,37 +444,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
     });
   }
 
-  let debounce = false;
-  let debouceTimeout;
-  const descScrollHandler = () => {
-    if (!debounce) {
-      if (currentIndex < 0) {
-        projects[currentIndex - 1]
-          .querySelector(".description")
-          .removeEventListener(descScrollHandler);
-      }
-      const descriptionElementParent =
-        projects[currentIndex].querySelector(".description");
-      const scrollTop = descriptionElementParent.scrollTop;
-      const scrollHeight = descriptionElementParent.scrollHeight;
-      const offsetHeight = descriptionElementParent.offsetHeight;
-
-      if (offsetHeight + scrollTop >= scrollHeight - 5) {
-        debounce = true;
-        resetOneProject(projects[currentIndex], currentIndex);
-        animateOneProject(projects[nextIndex], nextIndex);
-      }
-    } else {
-      if (debouceTimeout) {
-        clearTimeout(debouceTimeout);
-      }
-      debouceTimeout = setTimeout(() => {
-        debounce = false;
-      }, 1000);
-    }
-  };
-
-  const resetOneProject = (project, index) => {
+  function resetOneProject(project, index) {
     const { encodedName, encodedDescription, encodedFonctionnalites } =
       projectObjList[index];
     const mediaHolder = project.querySelector(".medias-holder");
@@ -526,7 +529,7 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
     } else {
       nextIndex = 0;
     }
-  };
+  }
 
   dateList.forEach((date, index) => {
     date.addEventListener("click", () => {

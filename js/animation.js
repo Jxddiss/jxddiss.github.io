@@ -97,7 +97,10 @@ export const animateHero = (delai = 4) => {
 
 export const animationMatrix = () => {
   const matrixCanvas = document.getElementById("matrix-effect-container");
-  const ctx = matrixCanvas.getContext("2d");
+  const ctx = matrixCanvas.getContext("2d", {
+    willReadFrequently: true,
+    alpha: false,
+  });
 
   matrixCanvas.width = matrixCanvas.offsetWidth;
   matrixCanvas.height = matrixCanvas.offsetHeight;
