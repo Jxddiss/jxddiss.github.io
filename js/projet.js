@@ -349,22 +349,15 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
       .fromTo(
         project,
         {
-          opacity: 0,
-          width: 0,
+          translateX: 0,
           zIndex: 4,
         },
         {
-          opacity: 1,
-          width: "100%",
+          translateX: "100%",
           duration: 0.8,
           ease: "power1.inOut",
         }
       )
-      .to(mediaHolder, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power1.inOut",
-      })
       .to(nameElement, {
         text: {
           value: name,
@@ -484,23 +477,13 @@ export const projectAnimation = (scrollAnimShouldPlay) => {
         },
         0
       )
-      .to(
-        mediaHolder,
-        {
-          opacity: 0,
-          duration: 0.1,
-        },
-        0
-      )
       .fromTo(
         project,
         {
-          opacity: 1,
-          width: "100%",
+          translateX: "100%",
         },
         {
-          opacity: 0,
-          width: 0,
+          translateX: 0,
           zIndex: 3,
           duration: 0.1,
           onComplete: () => {
