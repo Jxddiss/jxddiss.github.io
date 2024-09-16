@@ -263,6 +263,7 @@ export const animationSkills = () => {
     trigger: ".skills-section",
     start: "top center",
     end: "bottom 100px",
+    // markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
     onEnter: () => {
       skillsList.forEach((skill, index) => {
         const { posX, posY } = generatePosition(skillsList.length, index);
