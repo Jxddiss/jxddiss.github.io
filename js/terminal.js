@@ -433,7 +433,7 @@ export const terminalMoreSkills = () => {
         default:
           let found = false;
           dirHomeInnerHtmlTemplates.forEach((item) => {
-            if (item.name.includes(newLocationName)) {
+            if (item.name == newLocationName) {
               if (inputLine.dataset.location !== newLocationName) {
                 inputLine.dataset.location = newLocationName;
                 if (inputLine.dataset.location === "home") {
