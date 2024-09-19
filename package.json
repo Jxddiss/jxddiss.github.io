@@ -19,7 +19,7 @@
     "gh-pages": "^6.1.1",
     "gsap": "^3.12.5",
     "rimraf": "^6.0.1",
-    "three": "^0.133.0"
+    "three": "^0.168.0"
   },
   "browserslist": [
     "defaults and fully supports es6-module",

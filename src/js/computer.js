@@ -32,6 +32,7 @@ export function initializeAllAnimationPlus3D() {
   backgroundTexture.wrapS = THREE.RepeatWrapping;
   backgroundTexture.wrapT = THREE.RepeatWrapping;
   backgroundTexture.repeat.set(4, 4);
+  backgroundTexture.colorSpace = THREE.SRGBColorSpace;
   scene.background = backgroundTexture;
 
   let doneLoading = false;

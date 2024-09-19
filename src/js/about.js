@@ -117,10 +117,12 @@ const initializeModelInAbout = (
 
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(container.offsetWidth, container.offsetHeight);
+  THREE.ColorManagement.enabled = false;
+  renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
   container.appendChild(renderer.domElement);
-  const light = new THREE.DirectionalLight(0xffffff, 1);
+  const light = new THREE.DirectionalLight(0xffffff, 2);
   light.position.set(2, 0, 3);
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambientLight);
   scene.add(light);
 
