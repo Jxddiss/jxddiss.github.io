@@ -8,7 +8,7 @@
   --shadow-color: hsla(120, 75%, 50%, 0.671);
   --h1-font-size: clamp(2.5rem, 3.33vmax, 3.33vmax);
   --h2-font-size: clamp(2rem, 2.5vmax, 2.5vmax);
-  --h3-font-size: 2.083vmax;
+  --h3-font-size: clamp(1.8rem, 2.083vmax, 2.083vmax);
 
   --small-font-size: clamp(0.5rem, 0.87vmax, 0.87vmax);
   --normal-font-size: clamp(1rem, 1.25vmax, 1.25vmax);
