@@ -155,7 +155,7 @@ const projectObjList = [
       ],
     ],
     url: "https://artsync.tech/",
-    urlRepository: "https://github.com/Jxddiss",
+    urlRepository: "https://github.com/Jxddiss/ArtSync",
   },
   {
     name: "Jeu Pendu",
@@ -167,11 +167,11 @@ const projectObjList = [
     fonctionnalites: [
       "Détails :",
       [
-        "Validation de l'identité des clients",
-        "Blocage du compte après trois essais",
-        "Dépôt, retrait et transfert entre ses comptes",
-        "Possibilité de demander l'ouverture d'un nouveau compte",
-        "Marge de crédit affectée lors de retrait supérieur au solde",
+        "Six vues (accueil, préférences, historique, dictionnaire et jeu)",
+        "Internationalisation Anglais/Français",
+        "Choix de la langue et de la difficulté (préférences)",
+        "Ajout de mots personnalisé, enregistré dans une base de données SQLite",
+        "Historique des parties joués avec le résultat (SQLite)",
         "Technologies utilisées",
         ["Kotlin", "SQLite"],
       ],
