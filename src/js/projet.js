@@ -247,7 +247,7 @@ const projectObjList = [
   },
 ];
 
-export const projectAnimation = (scrollAnimShouldPlay) => {
+export const projectAnimation = () => {
   const projects = document.querySelectorAll(".project");
   const dateList = document.querySelectorAll(".date");
   const dateLineOverlays = document.querySelectorAll(".date-line-overlay");

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { animateHero, animationMatrix } from "./animation.js";
+import { animateHero } from "./animation.js";
 
 import { gsap } from "gsap";
 
@@ -58,7 +58,6 @@ export function initializeAllAnimationPlus3D() {
       });
       animateHero();
       animateCameraAndLight();
-      animationMatrix();
     },
     undefined,
     function (error) {

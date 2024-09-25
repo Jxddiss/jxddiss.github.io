@@ -78,11 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (Math.floor(window.scrollY) > 0 || !threeActivated) {
     document.body.classList.remove("no-scroll");
     animateHero(0);
-    animationMatrix();
   } else {
     window.scrollTo(0, 0);
     initializeAllAnimationPlus3D();
   }
+
+  animationMatrix();
   animationSkills();
   terminalMoreSkills();
   projectAnimation();
